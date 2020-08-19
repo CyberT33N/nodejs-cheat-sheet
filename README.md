@@ -43,6 +43,12 @@ npm init --yes
 ```javascript
 console.log( 'Current working directory: ' + __dirname );
 ```
+
+## Exit script
+```javascript
+process.exit();
+```
+
 <br />
 <br />
 
