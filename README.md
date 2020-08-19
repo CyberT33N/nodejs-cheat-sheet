@@ -37,3 +37,19 @@ npm init --yes
 
 <br />
 <br />
+
+
+## Get current working directory
+```javascript
+console.log( 'Current working directory: ' + __dirname );
+```
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
