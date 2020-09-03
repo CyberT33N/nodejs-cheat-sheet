@@ -28,6 +28,7 @@ npm init --yes
 
 ## set latest version of dependencies
 ```bash
+/* method 1*/
   "dependencies": {
     "express": "*",
     "mongodb": "*",
@@ -36,6 +37,11 @@ npm init --yes
     "jade": "*",
     "async": "*"
   }
+  
+/* method 2*/
+"dependencies":{
+    "foo" : ">=1.4.5"
+}
 ```
 
 
