@@ -26,6 +26,18 @@ npm init --yes
 { "license" : "SEE LICENSE IN <filename>" }
 ```
 
+## set latest version of dependencies
+```bash
+  "dependencies": {
+    "express": "*",
+    "mongodb": "*",
+    "underscore": "*",
+    "rjs": "*",
+    "jade": "*",
+    "async": "*"
+  }
+```
+
 
 <br />
 <br />
