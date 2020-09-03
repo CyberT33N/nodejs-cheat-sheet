@@ -26,9 +26,9 @@ npm init --yes
 { "license" : "SEE LICENSE IN <filename>" }
 ```
 
-## set latest version of dependencies
+## set/install latest version of dependencies
 ```bash
-/* method 1*/
+/* method 1* - run npm update after this/
   "dependencies": {
     "express": "*",
     "mongodb": "*",
