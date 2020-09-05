@@ -134,22 +134,18 @@ exec('cat *.js bad_file | wc -l', (err, stdout, stderr) => {
 <br />
 <br />
 
-## Update modules
-```bash
-// run inside of your project root
-npm update
-```
 
-<br />
-<br />
-
-
- _____________________________________________________
- _____________________________________________________
-
-
-<br />
-<br />
 
 # NPM
 https://docs.npmjs.com/cli/config
+
+
+## Update modules
+```bash
+# run inside of your project root to update all modules
+npm update
+
+# update specific module
+npm update browser-sync
+```
+
