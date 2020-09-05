@@ -2,8 +2,30 @@
 Node.js Cheat Sheet with the most needed stuff..
 
 
+
+## npm ERR! code ENOENT
+
+#### windows (change the value of Start to 1.)
+HKEY_LOCAL_MACHINE -> SYSTEM -> ControlSet001 -> Services -> Null
+
+
+
+
 <br />
 <br />
+<br />
+<br />
+
+
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
 <br />
 <br />
 
