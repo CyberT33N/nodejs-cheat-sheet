@@ -56,6 +56,19 @@ npm init --yes
 <br />
 <br />
 
+## environment variable
+Create file config.env in root of project. In this file you can create environment variables. Then install:
+```bash
+npm i dotenv
+```
+
+Then use in your project:
+```javascript
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
+```
+
+
 
 ## Get current working directory
 ```javascript
