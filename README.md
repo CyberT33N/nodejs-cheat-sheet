@@ -122,3 +122,17 @@ exec('cat *.js bad_file | wc -l', (err, stdout, stderr) => {
 // run inside of your project root
 npm update
 ```
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+# NPM
+https://docs.npmjs.com/cli/config
