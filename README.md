@@ -116,3 +116,9 @@ exec('cat *.js bad_file | wc -l', (err, stdout, stderr) => {
 
 <br />
 <br />
+
+## Update modules
+```bash
+// run inside of your project root
+npm update
+```
