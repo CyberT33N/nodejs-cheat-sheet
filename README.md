@@ -74,6 +74,9 @@ npm init --yes
 <br />
 
 ## environment variable
+
+#### project
+
 Create file config.env in root of project. In this file you can create environment variables. Then install:
 ```bash
 npm i dotenv
@@ -85,6 +88,21 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 ```
 
+#### global
+```bash
+npm config set NODE_SKIP_PLATFORM_CHECK 1
+```
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
 
 
 ## Get current working directory
