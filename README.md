@@ -128,6 +128,7 @@ process.exit();
  
 ## Run terminal command
 ```javascript
+// sync
 const { exec } = require('child_process');
 exec('cat *.js bad_file | wc -l', (err, stdout, stderr) => {
   if (err) {
@@ -139,6 +140,22 @@ exec('cat *.js bad_file | wc -l', (err, stdout, stderr) => {
   console.log(`stdout: ${stdout}`);
   console.log(`stderr: ${stderr}`);
 });
+
+
+
+//async
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+
+async function lsExample() {
+  try {
+    const { stdout, stderr } = await exec('ls');
+    console.log('stdout:', stdout);
+    console.log('stderr:', stderr);
+  } catch (e) {
+    console.error(e); // should contain code (exit code) and signal (that caused the termination).
+  }
+}
 ```
 
 <br />
