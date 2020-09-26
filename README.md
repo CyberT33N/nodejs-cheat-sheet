@@ -219,3 +219,9 @@ async function loadMonoCounter() {
     return new Buffer(data);
 }
 ```
+
+## write file
+```javascript                                           
+await fs.writeFile('filename.txt', 'test');
+```
+
