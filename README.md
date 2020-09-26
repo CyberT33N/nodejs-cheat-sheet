@@ -184,3 +184,38 @@ npm update
 npm update browser-sync
 ```
 
+
+
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+# FS
+
+## read file
+
+```javascript
+//sync 
+fs.readFile('./bookmarks.txt', 'utf-8', function read(e, data) {
+   if (e) {
+       log('Error while reading bookmarks file: ' + e);
+        return;
+    }
+    log('Successfully open boomarks file (raw): ' +  data);
+});
+
+//async
+const fs = require('fs').promises;
+async function loadMonoCounter() {
+    const data = await fs.readFile("monolitic.txt", "binary");
+    return new Buffer(data);
+}
+```
