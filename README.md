@@ -243,11 +243,11 @@ await fs.writeFile('filename.txt', 'test');
 
 ```javascript
 setImmediate(() => {
-	console.log('#3 - last after all callbacks are done..');
+console.log('#3 - last after all callbacks are done..');
 });
 
 process.nextTick(() => {
-	console.log('#2 - Will come after next tick..');
+console.log('#2 - Will come after next tick..');
 });
 
 console.log( '#1 -will come first..' );
