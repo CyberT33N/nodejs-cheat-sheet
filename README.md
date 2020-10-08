@@ -241,6 +241,7 @@ await fs.writeFile('filename.txt', 'test');
 
 ## Check Proxy
 ```javascript
+const request = require("request-promise");
 async function checkproxyStatus(proxy){
 
           const options = {
