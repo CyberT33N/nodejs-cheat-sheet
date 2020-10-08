@@ -262,6 +262,9 @@ async function checkproxyStatus(proxy){
 ```
 
 
+## Public Proxies
+- https://proxyscrape.com/free-proxy-list
+
 <br />
 <br />
 
