@@ -226,6 +226,39 @@ await fs.writeFile('filename.txt', 'test');
 ```
 
 
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+# request
+
+## Check Proxy
+```javascript
+async function checkproxyStatus(proxy){
+
+          const options = {
+            proxy: "http://" + proxy,
+            uri: "http://www.google.com",
+            timeout: 10000
+          };
+
+         try{
+             if( await request(options) ) return "http://" + proxy;
+         }
+         catch (e) {
+             console.log( 'checkproxyStatus() - error: ' + e );
+         }
+
+
+};
+```
 
 
 <br />
