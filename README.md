@@ -264,6 +264,7 @@ async function checkproxyStatus(proxy){
 
 ## Public Proxies
 - https://proxyscrape.com/free-proxy-list
+- https://openproxy.space/list
 
 <br />
 <br />
