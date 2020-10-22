@@ -240,11 +240,11 @@ await fs.writeFile('filename.txt', 'test');
 # request
 
 
-## POST
+## POST with JSON
 ```javascript
 const options = {
   'method': 'POST',
-  'url': 'http://example.com/tree/item',
+  'url': 'http://example.com/tree/item', // url or uri
   'headers': {
     'Content-Type': 'application/json'
   },
@@ -264,6 +264,16 @@ request(options, function (error, response) {
   console.log(response.body);
 });
 ```
+
+
+## DELETE
+```javascript
+const options = {
+  'method': 'DELETE',
+  'url': 'http://example.com/tree/item?id=11'  // url or uri
+};
+```
+
 
 ## Check Proxy
 ```javascript
