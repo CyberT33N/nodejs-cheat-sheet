@@ -277,24 +277,11 @@ const options = {
 
 ## Check Proxy
 ```javascript
-const request = require("request-promise");
-async function checkproxyStatus(proxy){
-
-          const options = {
-            proxy: "http://" + proxy,
-            uri: "http://www.google.com",
-            timeout: 10000
-          };
-
-         try{
-             if( await request(options) ) return "http://" + proxy;
-         }
-         catch (e) {
-             console.log( 'checkproxyStatus() - error: ' + e );
-         }
-
-
-};
+const options = {
+      proxy: "http://" + proxy, // http or https
+      url: "http://www.google.com",  // url or uri
+      timeout: 10000
+ };
 ```
 ## Public Proxies
 - https://proxyscrape.com/free-proxy-list
