@@ -242,6 +242,7 @@ Since request is outdated you can also use:
 - https://www.npmjs.com/package/axios
 
 
+
 ## POST with JSON
 ```javascript
 const options = {
@@ -254,7 +255,7 @@ const options = {
 
 };
 
-// ASYNC
+// ASYNC request
 const request = require("request-promise");
 const r = await request(options);
 log( 'addItem() - response: ' + JSON.stringify(r, null, 4) );
@@ -265,6 +266,12 @@ request(options, function (error, response) {
   if (error) throw new Error(error);
   console.log(response.body);
 });
+
+
+// ASYNC axios method
+ const res = await axios.post(  window.location.origin + '/secure', { client_id: 'a', client_secret: 'b'  }, {
+            headers: { authorization: accessToken.data['access_token'] }
+ });
 ```
 
 
@@ -274,6 +281,12 @@ const options = {
   'method': 'DELETE',
   'url': 'http://example.com/tree/item?id=11'  // url or uri
 };
+```
+
+## GET
+```javascript
+// ASYNC axios
+const response = await axios.get('/user?ID=12345');
 ```
 
 
