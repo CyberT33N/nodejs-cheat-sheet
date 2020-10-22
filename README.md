@@ -238,6 +238,8 @@ await fs.writeFile('filename.txt', 'test');
 <br />
 
 # request
+Since request is outdated you can also use:
+- https://www.npmjs.com/package/axios
 
 
 ## POST with JSON
