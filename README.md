@@ -239,6 +239,32 @@ await fs.writeFile('filename.txt', 'test');
 
 # request
 
+
+## POST
+```javascript
+const options = {
+  'method': 'POST',
+  'url': 'http://example.com/tree/item',
+  'headers': {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({"name":"Fortnite","parent_id":15,"sorting":5})
+
+};
+
+// ASYNC
+const request = require("request-promise");
+const r = await request(options);
+log( 'addItem() - response: ' + JSON.stringify(r, null, 4) );
+
+// SYNC
+var request = require('request');
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+```
+
 ## Check Proxy
 ```javascript
 const request = require("request-promise");
@@ -260,8 +286,6 @@ async function checkproxyStatus(proxy){
 
 };
 ```
-
-
 ## Public Proxies
 - https://proxyscrape.com/free-proxy-list
 - https://openproxy.space/list
