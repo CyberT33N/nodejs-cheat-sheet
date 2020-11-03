@@ -194,17 +194,29 @@ npm update browser-sync
 ```
 
 
+<br />
+<br />
+
+## Execute test
+```javascript
+"scripts": {
+  "test": "test.js"
+}
+```
+```bash
+npm test
+```
+
 ## Execute custom scripts key
 ```javascript
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    "custom_test": "some code here.."
-  }
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "custom_test": "some code here.."
+}
 ```
 ```bash
 npm run custom_test
 ```
-
 
 
 <br />
