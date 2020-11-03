@@ -63,6 +63,17 @@ npm init --yes
 
 
 
+## Use nodemon with test
+```javascript
+"scripts": {
+  "test": "mocha test.js",
+  "test-watch": "nodemon --exec \"npm test\""
+}
+```
+```bash
+npm test
+```
+
 
 <br />
 <br />
@@ -200,7 +211,7 @@ npm update browser-sync
 ## Execute test
 ```javascript
 "scripts": {
-  "test": "test.js"
+  "test": "mocha test.js"
 }
 ```
 ```bash
