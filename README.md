@@ -38,13 +38,13 @@ npm init --yes
 
 
 ## Create custom license
-```bash
+```javascript
 // Then include a file named <filename> at the top level of the package.
 { "license" : "SEE LICENSE IN <filename>" }
 ```
 
 ## set/install latest version of dependencies
-```bash
+```javascript
 /* method 1* - run npm update after this/
   "dependencies": {
     "express": "*",
@@ -60,6 +60,8 @@ npm init --yes
     "foo" : ">=1.4.5"
 }
 ```
+
+
 
 
 <br />
@@ -175,6 +177,13 @@ async function lsExample() {
 https://docs.npmjs.com/cli/config
 
 
+## Create package.json
+```bash
+npm init
+```
+
+
+
 ## Update modules
 ```bash
 # run inside of your project root to update all modules
@@ -184,6 +193,17 @@ npm update
 npm update browser-sync
 ```
 
+
+## Execute custom scripts key
+```javascript
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    "custom_test": "some code here.."
+  }
+```
+```bash
+npm run custom_test
+```
 
 
 
