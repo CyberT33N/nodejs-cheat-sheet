@@ -71,7 +71,7 @@ npm init --yes
 }
 ```
 ```bash
-npm test
+npm run test-watch
 ```
 
 
