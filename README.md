@@ -263,14 +263,24 @@ async function loadMonoCounter() {
 }
 ```
 
+## Read vanilla javascript file
+```javascript
+eval(require('fs').readFileSync('./website/js/req.js', 'utf8'));
+```
+
+<br>
+<br>
+
 ## write file
 ```javascript                                           
 await fs.writeFile('filename.txt', 'test');
 ```
 
 
-<br />
-<br />
+
+
+<br>
+<br>
 
 
  _____________________________________________________
@@ -369,3 +379,16 @@ console.log('#2 - Will come after next tick..');
 
 console.log( '#1 -will come first..' );
 ```
+
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
