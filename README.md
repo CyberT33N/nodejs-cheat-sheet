@@ -230,18 +230,19 @@ npm run custom_test
 ```
 
 
-<br />
-<br />
-
-
+<br><br>
  _____________________________________________________
  _____________________________________________________
-
-
-<br />
-<br />
+<br><br>
 
 # FS
+
+## fs promise with ESM
+```javascript
+import {default as fsWithCallbacks} from 'fs'
+const fs = fsWithCallbacks.promises
+```
+<br><br>
 
 ## read file
 
@@ -268,8 +269,7 @@ async function loadMonoCounter() {
 eval(require('fs').readFileSync('./website/js/req.js', 'utf8'));
 ```
 
-<br>
-<br>
+<br><br>
 
 ## write file
 ```javascript                                           
@@ -279,8 +279,7 @@ await fs.writeFile('filename.txt', 'test');
 
 
 
-<br>
-<br>
+<br><br>
 
 
  _____________________________________________________
