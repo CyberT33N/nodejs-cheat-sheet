@@ -380,14 +380,61 @@ console.log( '#1 -will come first..' );
 ```
 
 
-<br />
-<br />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
+<br><br>
 
+# Remote Debugging (https://nodejs.org/en/docs/guides/debugging-getting-started/)
+- Allows you to debug your node.js code via Remote on your Browser
 
-<br />
-<br />
+<br><br>
+
+1. Execute the js file you want to debug with this command:
+```javascript
+node --inspect-brk test/config/test.js
+```
+
+2. Open your Browser
+<br>
+2.1 Chrome:
+- chrome://inspect/#devices
+- Make sure that your Network Targets allows **localhost:9229** (will be default in most cases)
+<br>
+3. Click on **Inspect**. Thats it! Now you can debug your Node Code within your Browser Inspector Console.
 
