@@ -430,11 +430,12 @@ console.log( '#1 -will come first..' );
 node --inspect-brk test/config/test.js
 ```
 
+<br><br>
 2. Open your Browser
-<br>
-2.1 Chrome:
+<br>2.1 Chrome:
 - chrome://inspect/#devices
 - Make sure that your Network Targets allows **localhost:9229** (will be default in most cases)
-<br>
+
+<br><br>
 3. Click on **Inspect**. Thats it! Now you can debug your Node Code within your Browser Inspector Console.
 
