@@ -280,18 +280,15 @@ await fs.writeFile('filename.txt', 'test');
 
 
 <br><br>
-
-
  _____________________________________________________
  _____________________________________________________
+<br><br>
 
-
-<br />
-<br />
 
 # request
 Since request is outdated you can also use:
 - https://www.npmjs.com/package/axios
+- https://nodejs.org/api/https.html
 
 
 
@@ -304,26 +301,87 @@ const options = {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({"name":"Fortnite","parent_id":15,"sorting":5})
-
 };
 
-// ASYNC request
-const request = require("request-promise");
-const r = await request(options);
-log( 'addItem() - response: ' + JSON.stringify(r, null, 4) );
-
-// SYNC
+// callback - request
 var request = require('request');
 request(options, function (error, response) {
   if (error) throw new Error(error);
   console.log(response.body);
 });
 
+// await - request-promise
+const request = require("request-promise");
+const r = await request(options);
+log( 'addItem() - response: ' + JSON.stringify(r, null, 4) );
 
-// ASYNC axios method
- const res = await axios.post(  window.location.origin + '/secure', { client_id: 'a', client_secret: 'b'  }, {
-            headers: { authorization: accessToken.data['access_token'] }
- });
+
+
+
+
+
+
+
+// await - axios
+const res = await axios.post(  window.location.origin + '/secure', { client_id: 'a', client_secret: 'b'  }, {
+  headers: { authorization: accessToken.data['access_token'] }
+});
+
+
+
+
+
+
+
+/* callback - https node.js module */
+// stringify body for https module POST request
+const host = 'example.com'
+const path = 'foo.bar'
+const method = 'POST'
+const cookie = 'myCookie=123'
+const port = 443
+const body = {
+    name: "abc"
+}
+const headers = {
+    "Content-Type": "application/json",
+    "Set-Cookie": cookie,
+}
+            
+const data = JSON.stringify(body)
+const options = {
+    hostname: host,
+    port: port,
+    path: `/${path}`,
+    method: method,
+    headers: {
+        ...headers,
+        'Content-Length': data.length
+    },
+}
+
+const req = https.request(options, res => {
+    let resBody = ''
+    res.on('data', function (chunk) {
+        resBody += chunk
+    })
+
+    res.on('end', function () {
+        resBody = JSON.parse(resBody)
+        expect(res.statusCode).to.equal(201)
+        expect(res.headers.cookies).to.equal(cookie)
+        expect(resBody).to.deep.equal(body)
+        done()
+    })
+})
+
+req.on('error', e => {
+    console.error(e)
+    throw new Error(e);
+})
+
+req.write(data)
+req.end()
 ```
 
 
