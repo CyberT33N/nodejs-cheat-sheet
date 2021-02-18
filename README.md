@@ -497,3 +497,83 @@ node --inspect-brk test/config/test.js
 <br><br>
 3. Click on **Inspect**. Thats it! Now you can debug your Node Code within your Browser Inspector Console.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# require
+
+<br><br>
+
+## folder (http://nodejs.org/api/modules.html#modules_folders_as_modules)
+- When you pass a folder to Node's require(), it will check for a package.json for an endpoint. If that isn't defined, it checks for index.js, and finally index.node (a c++ extension format). So the index.js is most likely the entry point for requiring a module.
+```javascript
+// index.js
+exports.something = require("./routes/something.js");
+exports.others = require("./routes/others.js");
+```
