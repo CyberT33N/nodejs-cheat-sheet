@@ -291,6 +291,12 @@ Since request is outdated you can also use:
 - https://nodejs.org/api/https.html
 
 
+## axios
+- https://github.com/CyberT33N/axios-cheat-sheet/edit/main/README.md
+
+
+<br><br>
+
 
 ## POST with JSON
 ```javascript
@@ -320,12 +326,6 @@ log( 'addItem() - response: ' + JSON.stringify(r, null, 4) );
 
 
 
-
-
-// await - axios
-const res = await axios.post(  window.location.origin + '/secure', { client_id: 'a', client_secret: 'b'  }, {
-  headers: { authorization: accessToken.data['access_token'] }
-});
 
 
 
@@ -385,6 +385,11 @@ req.end()
 ```
 
 
+
+
+<br><br>
+
+
 ## DELETE
 ```javascript
 const options = {
@@ -393,11 +398,10 @@ const options = {
 };
 ```
 
-## GET
-```javascript
-// ASYNC axios
-const response = await axios.get('/user?ID=12345');
-```
+
+
+<br><br>
+
 
 
 ## Check Proxy
@@ -412,16 +416,83 @@ const options = {
 - https://proxyscrape.com/free-proxy-list
 - https://openproxy.space/list
 
-<br />
-<br />
 
 
- _____________________________________________________
- _____________________________________________________
 
 
-<br />
-<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+_________________________________________________
+_________________________________________________
+<br><br>
+
 
 # Difference between setImmediate and process.nextTick
 
