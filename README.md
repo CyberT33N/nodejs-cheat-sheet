@@ -602,6 +602,102 @@ await fs.writeFile('filename.txt', 'test');
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+# Assert Methods (https://www.w3schools.com/nodejs/ref_assert.asp)
+
+<br><br>
+
+
+## .assert() (- https://www.w3schools.com/nodejs/met_assert.asp)
+- The assert() method tests if a given expression is true or not. If the expression evaluates to 0, or false, an assertion failure is being caused, and the program is terminated. The assert() method is an alias of the assert.ok() method.
+
+
+<br><br>
+
+Syntax:
+```javascript
+assert(expression, message);
+```
+
+<br><br>
+
+```javascript
+var assert = require('assert');
+assert(50 > 70, "My message goes here");
+
+// The assert method also throws an error if the expression evaluates to 0:
+var assert = require('assert');
+assert(50 - 50);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
