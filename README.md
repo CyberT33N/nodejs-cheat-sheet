@@ -1001,7 +1001,7 @@ module.exports = class PuppeteerService extends EventEmitter {
     }
 }
 
-const framework = new PuppeteerWrapper()
+const framework = new PuppeteerService()
 
 
 
