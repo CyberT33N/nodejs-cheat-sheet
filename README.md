@@ -967,6 +967,112 @@ console.log( '#1 -will come first..' );
 
 
 
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# events (https://nodejs.org/api/events.html)
+
+
+<br><br>
+
+## Wait for event callback to be finished
+```javascript
+// PuppeteerService.js
+const EventEmitter = require('events')
+
+module.exports = class PuppeteerService extends EventEmitter {
+    constructor(){
+        super()
+        framework.on('reconnect', () => this.emit('reconnect'))
+    }
+    
+    async _reconnect() {
+        this.browser = await puppeteer.launch()
+        this.browser.once('disconnected', () => this._onDisconnect())
+        this.emit('reconnect')
+    }
+    
+    async _onDisconnect() {
+        await new Promise(resolve => setTimeout(resolve, 1000)); // <-- verify that we will wait..
+        await this._reconnect()
+    }
+}
+
+const framework = new PuppeteerWrapper()
+
+
+
+
+
+
+// service.test.js
+const PuppeteerService = new PuppeteerService()
+
+it.only('should create new browser object after close', async () => {
+    await PuppeteerService.browser.close() // <-- will fire disconnect listener
+
+    return new Promise((resolve, reject) => {
+        PuppeteerService.once('reconnect', async () => {
+            try{
+                const checkConnection = await PuppeteerService.browser.isConnected()
+                expect(checkConnection).to.equal(true)
+                resolve()
+            } catch(e){
+                reject()
+            }
+        })
+    })
+})
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
  _____________________________________________________
  _____________________________________________________
