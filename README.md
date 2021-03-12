@@ -976,9 +976,44 @@ console.log( '#1 -will come first..' );
 # events (https://nodejs.org/api/events.html)
 
 
+
+
+
 <br><br>
 
-## Wait for event callback to be finished
+## .on & .once
+```javascript
+// .on (every time the listener gets fired)
+browser.on('disconnected', coolFunctionHere)
+
+// .once (the listener will only 1 time get fired)
+browser.once('disconnected', coolFunctionHere)
+```
+
+## .off
+- Make sure that you specify from which function you want to delete the event listener. 
+```javascript
+boundOnDisconnect = () => _onDisconnect()
+browser.once('disconnected', boundOnDisconnect)
+        
+this.browser.off('disconnected', boundOnDisconnect)
+```
+
+
+
+this.browser.off('disconnected', this.boundOnDisconnect)
+
+
+
+
+
+<br><br>
+
+## EventEmitter
+
+<br><br>
+
+#### Wait for event callback to be finished
 ```javascript
 // PuppeteerService.js
 const EventEmitter = require('events')
