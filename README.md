@@ -1099,7 +1099,7 @@ it('should create new browser object after close', async () => {
 // PuppeteerService.js
 const EventEmitter = require('events')
 
-module.exports = class PuppeteerService extends EventEmitter {
+module.exports = class PuppeteerService {
    /**
      * Create EventEmitter
      */
