@@ -1015,6 +1015,8 @@ this.browser.off('disconnected', this.boundOnDisconnect)
 
 #### Wait for event callback to be finished
 ```javascript
+/*---- METHOD #1 - extends class with EventEmitter ----*/
+
 // PuppeteerService.js
 const EventEmitter = require('events')
 
@@ -1026,7 +1028,10 @@ module.exports = class PuppeteerService extends EventEmitter {
     
     async _reconnect() {
         this.browser = await puppeteer.launch()
-        this.browser.once('disconnected', () => this._onDisconnect())
+        
+        this.boundOnDisconnect = () => this._onDisconnect()
+        this.browser.on('disconnected', this.boundOnDisconnect)
+        
         this.emit('reconnect')
     }
     
@@ -1046,11 +1051,93 @@ const framework = new PuppeteerService()
 // service.test.js
 const PuppeteerService = new PuppeteerService()
 
-it.only('should create new browser object after close', async () => {
+it('should create new browser object after close', async () => {
     await PuppeteerService.browser.close() // <-- will fire disconnect listener
 
     return new Promise((resolve, reject) => {
         PuppeteerService.once('reconnect', async () => {
+            try{
+                const checkConnection = await PuppeteerService.browser.isConnected()
+                expect(checkConnection).to.equal(true)
+                resolve()
+            } catch(e){
+                reject()
+            }
+        })
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---- METHOD #2 - create new variable with EventEmitter ----*/
+// PuppeteerService.js
+const EventEmitter = require('events')
+
+module.exports = class PuppeteerService extends EventEmitter {
+   /**
+     * Create EventEmitter
+     */
+    constructor() {
+        this.em = new EventEmitter();
+        ['on', 'off', 'once'].forEach(m => this[m] = this.em[m])
+    }
+
+    async _reconnect() {
+        this.browser = await puppeteer.launch()
+        
+        this.boundOnDisconnect = () => this._onDisconnect()
+        this.browser.on('disconnected', this.boundOnDisconnect)
+        
+        this.em.emit('reconnect')
+    }
+    
+    async _onDisconnect() {
+        await new Promise(resolve => setTimeout(resolve, 1000)); // <-- verify that we will wait..
+        await this._reconnect()
+    }
+}
+
+const framework = new PuppeteerService()
+
+
+
+
+
+
+// service.test.js
+const PuppeteerService = new PuppeteerService()
+
+it('should create new browser object after close', async () => {
+    await PuppeteerService.browser.close() // <-- will fire disconnect listener
+
+    return new Promise((resolve, reject) => {
+        PuppeteerService..em.once('reconnect', async () => {
             try{
                 const checkConnection = await PuppeteerService.browser.isConnected()
                 expect(checkConnection).to.equal(true)
