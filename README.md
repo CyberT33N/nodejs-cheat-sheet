@@ -1049,15 +1049,16 @@ const framework = new PuppeteerService()
 
 
 // service.test.js
-const PuppeteerService = new PuppeteerService()
+const PuppeteerService = require('./PuppeteerService')
+const puppeteerService = new PuppeteerService()
 
 it('should create new browser object after close', async () => {
-    await PuppeteerService.browser.close() // <-- will fire disconnect listener
+    await puppeteerService.browser.close() // <-- will fire disconnect listener
 
     return new Promise((resolve, reject) => {
-        PuppeteerService.once('reconnect', async () => {
+        puppeteerService.on('reconnect', async () => {
             try{
-                const checkConnection = await PuppeteerService.browser.isConnected()
+                const checkConnection = await puppeteerService.browser.isConnected()
                 expect(checkConnection).to.equal(true)
                 resolve()
             } catch(e){
@@ -1096,6 +1097,7 @@ it('should create new browser object after close', async () => {
 
 
 /*---- METHOD #2 - create new variable with EventEmitter ----*/
+
 // PuppeteerService.js
 const EventEmitter = require('events')
 
@@ -1123,23 +1125,21 @@ module.exports = class PuppeteerService {
     }
 }
 
-const framework = new PuppeteerService()
-
-
 
 
 
 
 // service.test.js
-const PuppeteerService = new PuppeteerService()
+const PuppeteerService = require('./PuppeteerService')
+const puppeteerService = new PuppeteerService()
 
 it('should create new browser object after close', async () => {
-    await PuppeteerService.browser.close() // <-- will fire disconnect listener
+    await puppeteerService.browser.close() // <-- will fire disconnect listener
 
     return new Promise((resolve, reject) => {
-        PuppeteerService..em.once('reconnect', async () => {
+        puppeteerService.em.on('reconnect', async () => {
             try{
-                const checkConnection = await PuppeteerService.browser.isConnected()
+                const checkConnection = await puppeteerService.browser.isConnected()
                 expect(checkConnection).to.equal(true)
                 resolve()
             } catch(e){
