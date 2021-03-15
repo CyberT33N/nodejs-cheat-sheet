@@ -993,7 +993,7 @@ browser.once('disconnected', coolFunctionHere)
 ## .off
 - Make sure that you specify from which function you want to delete the event listener. 
 ```javascript
-boundOnDisconnect = () => _onDisconnect()
+const boundOnDisconnect = () => _onDisconnect()
 browser.once('disconnected', boundOnDisconnect)
         
 this.browser.off('disconnected', boundOnDisconnect)
