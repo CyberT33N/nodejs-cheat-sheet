@@ -1299,3 +1299,66 @@ node --inspect-brk test/config/test.js
 exports.something = require("./routes/something.js");
 exports.others = require("./routes/others.js");
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# buffer
+
+<br><br>
+
+## Uint8 Array to Base64
+```javascript
+var b64 = Buffer.from(u8).toString('base64')
+```
+
+
+
