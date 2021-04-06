@@ -1360,9 +1360,18 @@ exports.others = require("./routes/others.js");
 var b64 = Buffer.from(u8).toString('base64')
 ```
 
+<br><br>
+
 ## Check if buffer
 ```javascript
 var check = Buffer.isBuffer(readableFileStreamOrBuffer)
+```
+
+<br><br>
+
+## Create Buffer
+```javascript
+const buff = Buffer.from(readableFileStreamOrBuffer)
 ```
 
 
