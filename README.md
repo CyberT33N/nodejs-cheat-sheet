@@ -49,17 +49,22 @@ HKEY_LOCAL_MACHINE -> SYSTEM -> ControlSet001 -> Services -> Null
 - https://docs.npmjs.com/creating-a-package-json-file
 
 
+<br><br>
+
 ## Create package.json file of already existing project.
 ```bash
 npm init --yes
 ```
 
+<br><br>
 
 ## Create custom license
 ```javascript
 // Then include a file named <filename> at the top level of the package.
 { "license" : "SEE LICENSE IN <filename>" }
 ```
+
+<br><br>
 
 ## set/install latest version of dependencies
 ```javascript
@@ -79,7 +84,7 @@ npm init --yes
 }
 ```
 
-
+<br><br>
 
 ## Use nodemon with test
 ```javascript
@@ -97,12 +102,24 @@ npm run test-watch
 
 
 
+<br><br>
 
+## version
 
+<br><br>
 
+#### Install latest patch version
+- If you see ~1.0.2 it means to install version 1.0.2 or the latest patch version such as 1.0.4.
+```javascript
+"request": "~1.0.2"
+```
+<br><br>
 
-
-
+#### Install latest minor or patch version
+- If you see ^1.0.2 it means to install version 1.0.2 or the latest minor or patch version such as 1.1.0.
+```javascript
+"request": "^1.0.2"
+```
 
 
 
