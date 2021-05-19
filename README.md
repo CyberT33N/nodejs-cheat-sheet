@@ -1320,6 +1320,20 @@ exports.others = require("./routes/others.js");
 
 
 
+<br><br>
+
+## use global
+```javascript
+// app.js
+require('./test')
+console.log(test) // true
+
+// test.js
+global.test = true
+```
+
+
+
 
 
 
