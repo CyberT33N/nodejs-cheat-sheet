@@ -165,15 +165,14 @@ npm run test-watch
 ## environment variable
 
 #### project
-
-Create file config.env in root of project. In this file you can create environment variables. Then install:
-```bash
-npm i dotenv
-```
-
-Then use in your project:
 ```javascript
-const dotenv = require('dotenv');
+const dotenv = require('dotenv')
+
+// load global environment variables from .env file
+dotenv.config({silent: true})
+console.log(process.env)
+
+// load specific file
 dotenv.config({ path: './config.env' });
 ```
 
