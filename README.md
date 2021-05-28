@@ -1372,6 +1372,102 @@ global.test = true
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# DNS
+
+<br><br>
+
+## lookup
+```javascript
+const dns = require('dns')
+async function lookupPromise(){
+    return new Promise((resolve, reject) => {
+        dns.lookup(host, (err, address, family) => {
+            if(err) reject(err)
+            resolve(address)
+        })
+   })
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
