@@ -172,6 +172,9 @@ const dotenv = require('dotenv')
 dotenv.config({silent: true})
 console.log(process.env)
 
+// 1 liner - load global environment variables from .env file
+require('dotenv').config()
+
 // load specific file
 dotenv.config({ path: './config.env' });
 ```
