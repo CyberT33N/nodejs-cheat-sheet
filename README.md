@@ -416,12 +416,23 @@ async function lsExample() {
 # NPM
 https://docs.npmjs.com/cli/config
 
+<br><br>
 
-## Create package.json
+## Install module
 ```bash
-npm init
+npm i request
 ```
 
+
+<br><br>
+
+## Install module as dev dependency
+```bash
+npm i -D nyc
+```
+
+
+<br><br>
 
 
 ## Update modules
@@ -434,8 +445,7 @@ npm update browser-sync
 ```
 
 
-<br />
-<br />
+<br><br>
 
 ## Execute test
 ```javascript
@@ -446,6 +456,8 @@ npm update browser-sync
 ```bash
 npm test
 ```
+
+<br><br>
 
 ## Execute custom scripts key
 ```javascript
