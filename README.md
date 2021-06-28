@@ -423,6 +423,13 @@ https://docs.npmjs.com/cli/config
 npm i request
 ```
 
+<br><br>
+
+## Install module from github
+```bash
+npm install florianholzapfel/express-restify-mongoose#master
+# npm install florianholzapfel/express-restify-mongoose#commit-hash-here
+```
 
 <br><br>
 
