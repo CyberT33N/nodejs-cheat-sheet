@@ -418,14 +418,32 @@ https://docs.npmjs.com/cli/config
 
 <br><br>
 
-## Install module
+## Install
+
+<br><br>
+
+#### Install module
 ```bash
 npm i request
 ```
 
 <br><br>
 
-## Install module from github
+#### Install module global
+```bash
+npm i request -g
+```
+
+<br><br>
+
+#### Use module from node_modules folder instead of the global one
+```bash
+npx nodemon
+```
+
+<br><br>
+
+#### Install module from github
 ```bash
 npm install florianholzapfel/express-restify-mongoose#master
 # npm install florianholzapfel/express-restify-mongoose#commit-hash-here
@@ -433,16 +451,20 @@ npm install florianholzapfel/express-restify-mongoose#master
 
 <br><br>
 
-## Install module as dev dependency
+#### Install module as dev dependency
 ```bash
 npm i -D nyc
 ```
 
 
+<br><br><br><br>
+
+
+## Update
+
 <br><br>
 
-
-## Update modules
+#### Update modules
 ```bash
 # run inside of your project root to update all modules
 npm update
@@ -451,6 +473,11 @@ npm update
 npm update browser-sync
 ```
 
+
+<br><br>><br><br>
+
+
+## scripts
 
 <br><br>
 
@@ -478,6 +505,18 @@ npm run custom_test
 ```
 
 
+
+<br><br>><br><br>
+
+
+## cache
+
+<br><br>
+
+## clear cache
+```javascript
+npm cache clean --force
+```
 
 
 
