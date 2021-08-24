@@ -177,6 +177,13 @@ require('dotenv').config()
 
 // load specific file
 dotenv.config({ path: './config.env' });
+
+// load global environment variables from .env file and from specific one too
+const path = `${__dirname}/../.env-files/${process.env.npm_lifecycle_event}.env`
+dotenv.config({silent: true, path: path})// load script specific env vars from .env-files folder
+dotenv.config({silent: true}) // load global env vars from .env file
+
+
 ```
 
 #### global
