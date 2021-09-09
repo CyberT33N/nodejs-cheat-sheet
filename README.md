@@ -612,12 +612,13 @@ fs.readFile('./bookmarks.txt', 'utf-8', function read(e, data) {
     log('Successfully open boomarks file (raw): ' +  data);
 });
 
+
+
 //async
-const fs = require('fs').promises;
-async function loadMonoCounter() {
-    const data = await fs.readFile("monolitic.txt", "binary");
-    return new Buffer(data);
-}
+const fs = require('fs').promises
+const path = `${__dirname}/img.png`
+const img = await fs.readFile(path, "binary")
+imageBuffer = Buffer.from(img)
 ```
 
 ## Read vanilla javascript file
