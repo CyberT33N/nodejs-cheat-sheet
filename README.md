@@ -617,8 +617,11 @@ fs.readFile('./bookmarks.txt', 'utf-8', function read(e, data) {
 //async
 const fs = require('fs').promises
 const path = `${__dirname}/img.png`
+
+imageBuffer = await fs.readFile(path)
+
 const img = await fs.readFile(path, "binary")
-const imageBuffer = Buffer.from(img)
+imageUint8Array = Buffer.from(img)
 ```
 
 ## Read vanilla javascript file
