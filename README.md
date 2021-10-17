@@ -186,10 +186,84 @@ dotenv.config({silent: true}) // load global env vars from .env file
 
 ```
 
+<br><br>
+
 #### global
 ```bash
 npm config set NODE_SKIP_PLATFORM_CHECK 1
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+#### start script with paramater
+```bash
+node app.js a=1
+```
+```javascript
+// method #1
+var args = process.argv.slice(2);
+// [ 'a=1' ]
+
+
+
+// method #2
+var argv = require('minimist')(process.argv.slice(2));
+console.dir(argv);
+# $ node example/parse.js -a beep -b boop
+# { _: [], a: 'beep', b: 'boop' }
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
