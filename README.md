@@ -1629,6 +1629,73 @@ async function lookupPromise(){
  _____________________________________________________
 <br><br>
 
+# stream
+
+<br><br>
+
+## create stream
+```javascript
+const readStream = fs.createReadStream('data.csv')
+const writeStream = fs.createWriteStream("outpuData.json")
+readStream.pipe(csvConverter).pipe(writeStream)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
 # buffer
 
 <br><br>
