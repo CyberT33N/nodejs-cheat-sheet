@@ -1722,3 +1722,67 @@ const buff = Buffer.from(readableFileStreamOrBuffer)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+#### Convert csv to json (works with large files)
+```javascript
+const csv = require('csvtojson')
+const fs = require('fs-extra')
+
+const options = {
+    delimiter: '|',
+    quote: '\'',
+    escape: '\'',
+    fork: true,
+    // eslint-disable-next-line max-len
+    headers: ['id', 'thumbs', 'url', 'title', 'channel', 'tags', 'pornstar', 'rating', 'duration', 'date', 'unknown']
+}
+
+const csvConverter = new csv(options)
+
+const readStream = fs.createReadStream(dumb)
+const writeStream = fs.createWriteStream(editDumb)
+readStream.pipe(csvConverter).pipe(writeStream)
+```
+
+
