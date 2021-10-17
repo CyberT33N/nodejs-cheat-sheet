@@ -637,6 +637,12 @@ await fs.writeFile('filename.txt', 'test');
 ```
 
 
+<br><br>
+
+## write file to json
+```javascript                                           
+await fs.writeJson('filename.txt', jsonArray)
+```
 
 
 
