@@ -246,8 +246,8 @@ var args = process.argv.slice(2);
 // method #2
 var argv = require('minimist')(process.argv.slice(2));
 console.dir(argv);
-# $ node example/parse.js -a beep -b boop
-# { _: [], a: 'beep', b: 'boop' }
+# $ node example/parse.js --apple beep --banana boop
+# { _: [], apple: 'beep', banana: 'boop' }
 ```
 
 
