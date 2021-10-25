@@ -1825,6 +1825,7 @@ const buff = Buffer.from(readableFileStreamOrBuffer)
 
 #### Convert csv to json (works with large files)
 ```javascript
+// method #1 - sync
 const csv = require('csvtojson')
 const fs = require('fs-extra')
 
@@ -1837,11 +1838,51 @@ const options = {
     headers: ['id', 'thumbs', 'url', 'title', 'channel', 'tags', 'pornstar', 'rating', 'duration', 'date', 'unknown']
 }
 
+
+
+
+
+
+
+// method #1 - sync
 const csvConverter = new csv(options)
 
 const readStream = fs.createReadStream(dumb)
 const writeStream = fs.createWriteStream(editDumb)
 readStream.pipe(csvConverter).pipe(writeStream)
+
+
+
+
+
+
+// method #2 - await
+const readStream = fs.createReadStream('yourFile.csv')
+
+await new Promise((resolve, reject) => {
+    csv(options)
+        .fromStream(readStream)
+        .subscribe(json=>{
+            return new Promise((resolve, reject)=>{
+                resolve(json)
+            })
+        })
+        .on('header', header => {
+            log(`Converting CSV to JSON - headers: ${headers}`)
+        })
+        // .on('data', data => {
+        //     // data is a buffer object
+        //     const jsonStr = data.toString('utf8')
+        //     log(`Converting CSV to JSON - Current Line: ${jsonStr}`)
+        // })
+        .on('done', () => {
+            log('Finished converting CSV to JSON')
+            resolve()
+        })
+        .on('error', e => {
+            throw new BaseError(`Error while converting CSV to JSON - Error: ${e}`)
+        })
+})
 ```
 
 
