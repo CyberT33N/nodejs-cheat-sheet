@@ -1870,11 +1870,12 @@ await new Promise((resolve, reject) => {
         .on('header', header => {
             log(`Converting CSV to JSON - headers: ${headers}`)
         })
-        // .on('data', data => {
-        //     // data is a buffer object
-        //     const jsonStr = data.toString('utf8')
-        //     log(`Converting CSV to JSON - Current Line: ${jsonStr}`)
-        // })
+         .on('data', async data => {
+                // data is a buffer object
+                const jsonStr = data.toString('utf8')
+                log(`Converting CSV to JSON - Current Line: ${jsonStr}`)
+                await fs.appendFile(editDumb, jsonStr)
+            })
         .on('done', () => {
             log('Finished converting CSV to JSON')
             resolve()
