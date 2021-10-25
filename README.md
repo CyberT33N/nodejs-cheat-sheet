@@ -1696,7 +1696,7 @@ async function lookupPromise(){
 ```javascript
 const readStream = fs.createReadStream('data.csv')
 const writeStream = fs.createWriteStream("outpuData.json")
-readStream.pipe(csvConverter).pipe(writeStream)
+const stream = readStream.pipe(writeStream)
 ```
 
 
