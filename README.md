@@ -756,13 +756,43 @@ comstimageBuffer = await fs.readFile(path)
 const img = await fs.readFile(path, "binary")
 const imageUint8Array = Buffer.from(img)
 ```
+<br><br>
 
 ## Read vanilla javascript file
 ```javascript
 eval(require('fs').readFileSync('./website/js/req.js', 'utf8'));
 ```
-
 <br><br>
+
+## Read first line of file
+```javascript
+const fs = require('fs');
+const readline = require('readline');
+
+async function getFirstLine(pathToFile) {
+  const readable = fs.createReadStream(pathToFile);
+  const reader = readline.createInterface({ input: readable });
+  const line = await new Promise((resolve) => {
+    reader.on('line', (line) => {
+      reader.close();
+      resolve(line);
+    });
+  });
+  readable.close();
+  return line;
+}
+```
+
+
+
+
+
+
+
+
+
+<br><br> <br><br>
+
 
 ## write file
 ```javascript                                           
