@@ -771,21 +771,30 @@ eval(require('fs').readFileSync('./website/js/req.js', 'utf8'));
 var lineReader = require('line-reader');
 
 await new Promise((resolve, reject) => {
-    lineReader.eachLine(dumb, async (line, last) => {
+    let counter = 0
+    lineReader.eachLine(dumb, async(line, last) => {
         // console.log(line);
-        const json = await csv({
-            noheader:true,
-            output: "json"
-        }).fromString(line)
+        counter++
 
-        // console.log(`json: ${JSON.stringify(json)}`)
-        await fs.appendFile(editDumb, json)
+        let json = await csv(options).fromString(line)
 
-        if (last) {
-            // or check if it's the last one
+        json = JSON.stringify(json[0])
+
+        // Check for first Line
+        if (counter === 1) {
+            json = `[${json},`
+            console.log(`json: ${json}`)
+        } else if (last) {
+            json = `${json}]`
+            console.log(`json: ${json}`)
             resolve()
+        } else {
+            json = `${json},`
+            console.log(`json: ${json}`)
         }
-    });
+
+        await fs.appendFile(editDumb, json)
+    })
 })
 
 
