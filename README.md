@@ -762,10 +762,37 @@ const imageUint8Array = Buffer.from(img)
 ```javascript
 eval(require('fs').readFileSync('./website/js/req.js', 'utf8'));
 ```
+
 <br><br>
 
 ## Read first line of file
 ```javascript
+// method #1
+var lineReader = require('line-reader');
+
+await new Promise((resolve, reject) => {
+    lineReader.eachLine(dumb, async (line, last) => {
+        // console.log(line);
+        const json = await csv({
+            noheader:true,
+            output: "json"
+        }).fromString(line)
+
+        // console.log(`json: ${JSON.stringify(json)}`)
+        await fs.appendFile(editDumb, json)
+
+        if (last) {
+            // or check if it's the last one
+            resolve()
+        }
+    });
+})
+
+
+
+
+
+// method #2
 const fs = require('fs');
 const readline = require('readline');
 
