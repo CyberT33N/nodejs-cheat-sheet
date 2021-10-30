@@ -307,6 +307,12 @@ var argv = require('minimist')(process.argv.slice(2));
 console.dir(argv);
 # $ node example/parse.js --apple beep --banana boop
 # { _: [], apple: 'beep', banana: 'boop' }
+
+
+
+
+// method #3
+node -e "require('../convert.js').CSV2JSON('$DUMB', '$editDumb', '$headers')"
 ```
 
 
