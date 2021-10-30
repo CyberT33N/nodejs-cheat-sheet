@@ -807,6 +807,15 @@ await new Promise((resolve, reject) => {
 ## Read only first line of file
 ```javascript
 // method #1
+ const firstline = require('firstline')
+const line = await firstline(pathToFile)
+
+
+
+
+
+
+// method #2
 const fs = require('fs');
 const readline = require('readline');
 
@@ -822,6 +831,24 @@ async function getFirstLine(pathToFile) {
   readable.close();
   return line;
 }
+
+
+
+
+
+
+
+// method #3
+await new Promise(resolve => {
+      const rl = readline.createInterface({
+          input: fs.createReadStream(pathToFile),
+      })
+
+      rl.on('line', function (line) {
+          console.log(line);
+          resolve(line)
+      })
+  })
 ```
 
 
