@@ -771,7 +771,7 @@ eval(require('fs').readFileSync('./website/js/req.js', 'utf8'));
 
 <br><br>
 
-## Read first line of file
+## Read file by reading each line
 ```javascript
 // method #1
 var lineReader = require('line-reader');
@@ -779,35 +779,34 @@ var lineReader = require('line-reader');
 await new Promise((resolve, reject) => {
     let counter = 0
     lineReader.eachLine(dumb, async(line, last) => {
-        // console.log(line);
         counter++
 
-        let json = await csv(options).fromString(line)
+        let json = (await csv(options).fromString(headers + '\n\r' + line))[0]
+        json = JSON.stringify(json).replace(/\\"/g, '')
+        log(`Current line: ${json}`)
 
-        json = JSON.stringify(json[0])
-
-        // Check for first Line
         if (counter === 1) {
+            // Check for first Line
             json = `[${json},`
-            console.log(`json: ${json}`)
         } else if (last) {
+            // Check for last Line
             json = `${json}]`
-            console.log(`json: ${json}`)
             resolve()
         } else {
+            // Check for inbetween Line
             json = `${json},`
-            console.log(`json: ${json}`)
         }
 
         await fs.appendFile(editDumb, json)
     })
 })
+```
 
+<br><br>
 
-
-
-
-// method #2
+## Read only first line of file
+```javascript
+// method #1
 const fs = require('fs');
 const readline = require('readline');
 
@@ -1897,17 +1896,64 @@ const buff = Buffer.from(readableFileStreamOrBuffer)
 
 #### Convert csv to json (works with large files)
 ```javascript
-// method #1 - sync
+'use strict'
+
+const log = require('fancy-log')
 const csv = require('csvtojson')
 const fs = require('fs-extra')
+const lineReader = require('line-reader')
 
-const options = {
-    delimiter: '|',
-    quote: '\'',
-    escape: '\'',
-    fork: true,
-    // eslint-disable-next-line max-len
-    headers: ['id', 'thumbs', 'url', 'title', 'channel', 'tags', 'pornstar', 'rating', 'duration', 'date', 'unknown']
+
+
+
+const CSV2JSON = async(dumb, editDumb, headers) => {
+    try {
+        log(`\n\nStarting CSV2JSON - Current directory: ${__dirname} - Please wait..`)
+
+        if (!dumb && !editDumb && !headers) {
+            var {dumb, editDumb, headers} = require('minimist')(process.argv.slice(2))
+        }
+
+        const options = {
+            trim: true,
+            delimiter: '|',
+            quote: '\'',
+            escape: '\'',
+            fork: true,
+            // output: "csv",
+            // eslint-disable-next-line max-len
+            headers: Array.isArray(headers) ? headers : JSON.parse(headers)
+            // headers: headers,
+            // noheader: true
+        }
+
+        await new Promise((resolve, reject) => {
+            let counter = 0
+            lineReader.eachLine(dumb, async(line, last) => {
+                counter++
+
+                let json = (await csv(options).fromString(headers + '\n\r' + line))[0]
+                json = JSON.stringify(json).replace(/\\"/g, '')
+                log(`Current line: ${json}`)
+
+                if (counter === 1) {
+                    // Check for first Line
+                    json = `[${json},`
+                } else if (last) {
+                    // Check for last Line
+                    json = `${json}]`
+                    resolve()
+                } else {
+                    // Check for inbetween Line
+                    json = `${json},`
+                }
+
+                await fs.appendFile(editDumb, json)
+            })
+        })
+    } catch (e) {
+        throw new BaseError(`Error while converting CSV to JSON - Error: ${e}`)
+    }
 }
 
 
@@ -1916,7 +1962,21 @@ const options = {
 
 
 
-// method #1 - sync
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// method #2 - sync
 const csvConverter = new csv(options)
 
 const readStream = fs.createReadStream(dumb)
@@ -1928,7 +1988,7 @@ readStream.pipe(csvConverter).pipe(writeStream)
 
 
 
-// method #2 - await
+// method #3 - from Stream
 const readStream = fs.createReadStream('yourFile.csv')
 
 await new Promise((resolve, reject) => {
