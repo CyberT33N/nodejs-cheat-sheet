@@ -462,6 +462,8 @@ process.exit();
 
  # Exec
  
+ <br><br>
+
  
 ## Run terminal command
 ```javascript
@@ -495,14 +497,31 @@ async function lsExample() {
 }
 ```
 
+<br><br>
+
+
+## Show realtime terminal logs
+```javascript
+childProcess.spawn('bash', [scriptPath], {
+    cwd: process.cwd(),
+    detached: true,
+    stdio: 'inherit'
+})
+```
 
 
 
+<br><br>
 
 
-
-
-
+## Run as sudo
+```javascript
+const child = spawn('sh', ['-c', `echo abc | sudo -S bash -c '${command}'`], {
+    cwd: process.cwd(),
+    detached: true,
+    stdio: 'inherit'
+})
+```
 
 
 
