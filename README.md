@@ -53,9 +53,17 @@ HKEY_LOCAL_MACHINE -> SYSTEM -> ControlSet001 -> Services -> Null
 
 ## Run node script from bash script and output logs
 ```bash
- node '../convert.js' 2>&1
+node '../convert.js' 2>&1
 ```
 
+<br><br>
+
+
+## Run ESM file with eval
+- To be able to use import with eval we must the --input-type=module flag
+```bash
+node --input-type=module -e "import {CSV2JSON} from '../convert.js'; CSV2JSON('$DUMB', '$editDumb', '$headers')"
+```
 
 
 
