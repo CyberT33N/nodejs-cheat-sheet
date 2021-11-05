@@ -508,12 +508,24 @@ import childProcess from 'child_process'
 const exec = util.promisify(childProcess.exec)
 const spawn = childProcess.spawn
 
+const scriptPath = '../file.sh'
 
-// Method #1 
+
+
+// Method #1
+const child = spawn('bash', [scriptPath], {stdio: 'inherit', env: { MONGOURI: process.env.MONGOB_ADDRESS}, shell: true})
+
+child.on('close', code => {
+    log('child process exited with code: ' + code)
+})
+
+
+
+
+// Method #2
 it.only('should convert dumb and import it to database', done => {
     try {
-        const scriptPath = '../file.sh'
-        const child = spawn('bash', [scriptPath])
+        const child = spawn('bash', [scriptPath], env: { MONGOURI: process.env.MONGOB_ADDRESS}, shell: true})
 
         child.stdout.on('data', line => {
             log('stdout: ' + line)
@@ -530,14 +542,6 @@ it.only('should convert dumb and import it to database', done => {
     } catch (e) {
         console.error(e) // should contain code (exit code) and signal (that caused the termination).
     }
-})
-
-
-// Method #2
-childProcess.spawn('bash', [scriptPath], {
-    cwd: process.cwd(),
-    detached: true,
-    stdio: 'inherit'
 })
 ```
 
