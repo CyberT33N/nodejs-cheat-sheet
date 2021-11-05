@@ -502,22 +502,35 @@ async function lsExample() {
 
 ## Show realtime terminal logs
 ```javascript
+// ----- TERMINAL ----
+import util from 'util'
+import childProcess from 'child_process'
+const exec = util.promisify(childProcess.exec)
+const spawn = childProcess.spawn
+
+
 // Method #1 
-const scriptPath = '../file.sh'
-var child = spawn('bash', [scriptPath]);
+it.only('should convert dumb and import it to database', done => {
+    try {
+        const scriptPath = '../file.sh'
+        const child = spawn('bash', [scriptPath])
 
-child.stdout.on('data', function (data) {
-    console.log('stdout: ' + data);
-});
+        child.stdout.on('data', line => {
+            log('stdout: ' + line)
+        })
 
-child.stderr.on('data', function (data) {
-    console.log('stderr: ' + data);
-});
+        child.stderr.on('data', e =>{
+            log('stderr: ' + e)
+        })
 
-child.on('close', async function (code) {
-    console.log('child process exited with code ' + code);
-});
-
+        child.on('close', code => {
+            log('child process exited with code: ' + code)
+            done()
+        })
+    } catch (e) {
+        console.error(e) // should contain code (exit code) and signal (that caused the termination).
+    }
+})
 
 
 // Method #2
