@@ -512,8 +512,10 @@ const scriptPath = '../file.sh'
 
 
 
+
 // Method #1
-const child = spawn('bash', [scriptPath], {stdio: 'inherit', env: { MONGOURI: process.env.MONGOB_ADDRESS}, shell: true})
+# You may must use ...process.env or you will get node command not found when executing node apps inside of your bash script
+const child = spawn('bash', [scriptPath], {stdio: 'inherit', env: { ...process.env, MONGOURI: process.env.MONGOB_ADDRESS}}})
 
 child.on('close', code => {
     log('child process exited with code: ' + code)
@@ -522,10 +524,13 @@ child.on('close', code => {
 
 
 
+
+
 // Method #2
 it.only('should convert dumb and import it to database', done => {
     try {
-        const child = spawn('bash', [scriptPath], env: { MONGOURI: process.env.MONGOB_ADDRESS}, shell: true})
+        # You may must use ...process.env or you will get node command not found when executing node apps inside of your bash script
+        const child = spawn('bash', [scriptPath], {env: { ...process.env, MONGOURI: process.env.MONGOB_ADDRESS}}})
 
         child.stdout.on('data', line => {
             log('stdout: ' + line)
