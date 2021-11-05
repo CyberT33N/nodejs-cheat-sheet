@@ -854,21 +854,21 @@ await new Promise((resolve, reject) => {
         log(`Current line: ${json}`)
 
         if (last) {
-             // Check for last Line
-             json = `${json}]`
-             resolve()
-         }
-
-         if (counter === 1) {
-             // Check for first Line
-             json = `[${json},\n\n`
-             resolve()
-         } else {
-             // Check for inbetween Line
-             json = `${json},\n\n`
-         }
+            // Check for last Line
+            json = `${json}]`
+        } else if (counter === 1) {
+            // Check for first line
+            json = `[${json},\n\n`
+        } else {
+            // Check for between line
+            json = `${json},\n\n`
+        }
 
         await fs.appendFile(editDumb, json)
+
+        if (last) {
+            resolve()
+        }
     })
 })
 ```
