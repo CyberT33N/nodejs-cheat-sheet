@@ -502,6 +502,25 @@ async function lsExample() {
 
 ## Show realtime terminal logs
 ```javascript
+// Method #1 
+const scriptPath = '../file.sh'
+var child = spawn('bash', [scriptPath]);
+
+child.stdout.on('data', function (data) {
+    console.log('stdout: ' + data);
+});
+
+child.stderr.on('data', function (data) {
+    console.log('stderr: ' + data);
+});
+
+child.on('close', async function (code) {
+    console.log('child process exited with code ' + code);
+});
+
+
+
+// Method #2
 childProcess.spawn('bash', [scriptPath], {
     cwd: process.cwd(),
     detached: true,
