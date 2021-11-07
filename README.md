@@ -849,9 +849,19 @@ await new Promise((resolve, reject) => {
     lineReader.eachLine(dumb, async(line, last) => {
         counter++
 
-        let json = (await csv(options).fromString(headers + '\n\r' + line))[0]
-        json = JSON.stringify(json).replace(/\\"/g, '')
-        log(`Current line: ${json}`)
+       log(`line before convert: ${line}`)
+       let json = (
+           await csv(options).fromString(headers + '\n\r' + line)
+               .preFileLine((fileLineString, lineIdx) => {
+                   // .. If needed you can do something with the line before it gets converted
+                   return fileLineString
+               })
+               .on('error', (err)=>{
+                   console.log(err)
+               })
+       )[0]
+       json = JSON.stringify(json).replace(/\\"/g, '')
+       log(`line after convert: ${json}`)
 
         if (last) {
             // Check for last Line
@@ -2030,9 +2040,19 @@ const CSV2JSON = async(dumb, editDumb, headers) => {
             lineReader.eachLine(dumb, async(line, last) => {
                 counter++
 
-                let json = (await csv(options).fromString(headers + '\n\r' + line))[0]
+                log(`line before convert: ${line}`)
+                let json = (
+                    await csv(options).fromString(headers + '\n\r' + line)
+                        .preFileLine((fileLineString, lineIdx) => {
+                            // .. If needed you can do something with the line before it gets converted
+                            return fileLineString
+                        })
+                        .on('error', (err)=>{
+                            console.log(err)
+                        })
+                )[0]
                 json = JSON.stringify(json).replace(/\\"/g, '')
-                log(`Current line: ${json}`)
+                log(`line after convert: ${json}`)
 
                 if (last) {
                     // Check for last Line
