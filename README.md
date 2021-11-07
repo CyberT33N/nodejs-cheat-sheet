@@ -853,7 +853,12 @@ await new Promise((resolve, reject) => {
        let json = (
            await csv(options).fromString(headers + '\n\r' + line)
                .preFileLine((fileLineString, lineIdx) => {
-                   // .. If needed you can do something with the line before it gets converted
+                   if (fileLineString.match(/'.*'''|'.*''/)) {
+                       // eslint-disable-next-line max-len
+                       console.log(`Line #${lineIdx + 1} is invalid. We will try to fix it now by usign regex. Invalid Line: ${fileLineString}`)
+                       fileLineString = fileLineString.replace(/'''|''/g, '\'')
+                   }
+
                    return fileLineString
                })
                .on('error', (err)=>{
@@ -2044,7 +2049,12 @@ const CSV2JSON = async(dumb, editDumb, headers) => {
                 let json = (
                     await csv(options).fromString(headers + '\n\r' + line)
                         .preFileLine((fileLineString, lineIdx) => {
-                            // .. If needed you can do something with the line before it gets converted
+                            if (fileLineString.match(/'.*'''|'.*''/)) {
+                                // eslint-disable-next-line max-len
+                                console.log(`Line #${lineIdx + 1} is invalid. We will try to fix it now by usign regex. Invalid Line: ${fileLineString}`)
+                                fileLineString = fileLineString.replace(/'''|''/g, '\'')
+                            }
+
                             return fileLineString
                         })
                         .on('error', (err)=>{
