@@ -2009,60 +2009,93 @@ const buff = Buffer.from(readableFileStreamOrBuffer)
 
 #### Convert csv to json (works with large files)
 ```javascript
-'use strict'
+/*
+███████████████████████████████████████████████████████████████████████████████
+██******************** PRESENTED BY t33n Software ***************************██
+██                                                                           ██
+██                  ████████╗██████╗ ██████╗ ███╗   ██╗                      ██
+██                  ╚══██╔══╝╚════██╗╚════██╗████╗  ██║                      ██
+██                     ██║    █████╔╝ █████╔╝██╔██╗ ██║                      ██
+██                     ██║    ╚═══██╗ ╚═══██╗██║╚██╗██║                      ██
+██                     ██║   ██████╔╝██████╔╝██║ ╚████║                      ██
+██                     ╚═╝   ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝                      ██
+██                                                                           ██
+███████████████████████████████████████████████████████████████████████████████
+███████████████████████████████████████████████████████████████████████████████
+*/
+import 'ErrorManager'
+import log from 'fancy-log'
+import csv from 'csvtojson'
+import fs from 'fs-extra'
+import lineReader from 'line-reader'
 
-const log = require('fancy-log')
-const csv = require('csvtojson')
-const fs = require('fs-extra')
-const lineReader = require('line-reader')
+import { __dirname } from '../../../utils.js'
 
-
-
-
-const CSV2JSON = async(dumb, editDumb, headers) => {
+const CSV2JSON = async(dumb, editDumb, headers, {
+    options = {
+        trim: true,
+        delimiter: '|',
+        quote: '"',
+        escape: '"',
+        fork: true
+    }
+} = {}) => {
     try {
-        log(`\n\nStarting CSV2JSON - Current directory: ${__dirname} - Please wait..`)
+        log(`\n\nStarting CSV2JSON - Current directory: ${__dirname()} - Please wait..`)
 
         if (!dumb && !editDumb && !headers) {
             var {dumb, editDumb, headers} = require('minimist')(process.argv.slice(2))
         }
 
-        const options = {
-            trim: true,
-            delimiter: '|',
-            quote: '\'',
-            escape: '\'',
-            fork: true,
-            // output: "csv",
-            // eslint-disable-next-line max-len
+        if (!dumb && !editDumb && !headers) {
+            throw new BaseError('Param is missing CSV2JSON()')
+        }
+
+        options = {
+            ...options,
             headers: Array.isArray(headers) ? headers : JSON.parse(headers)
-            // headers: headers,
-            // noheader: true
         }
 
         await new Promise((resolve, reject) => {
-            let counter = 0
+            let firstLine, counter = 0
             lineReader.eachLine(dumb, async(line, last) => {
                 counter++
 
-                log(`line before convert: ${line}`)
+                firstLine
+                if (counter === 1) {
+                    firstLine = line
+                }
+
+                // log(`line before convert: ${line}`)
                 let json = (
                     await csv(options).fromString(headers + '\n\r' + line)
                         .preFileLine((fileLineString, lineIdx) => {
-                            if (fileLineString.match(/'.*'''|'.*''/)) {
-                                // eslint-disable-next-line max-len
-                                console.log(`Line #${lineIdx + 1} is invalid. We will try to fix it now by usign regex. Invalid Line: ${fileLineString}`)
-                                fileLineString = fileLineString.replace(/'''|''/g, '\'')
+                            // if it its not the first line
+                            if (counter !== 1) {
+                                if (fileLineString.match(/'.*'''|'.*''/)) {
+                                    // eslint-disable-next-line max-len
+                                    console.log(`Line ${lineIdx + 1} is invalid. It has three single quotes We will try to fix it now by usign regex. Invalid Line: ${fileLineString}`)
+                                    fileLineString = fileLineString.replace(/'''|''/g, '\'')
+                                }
+
+                                if (counter !== 1 && !fileLineString.match(/^(?:[^"\\]|\\.|"(?:\\.|[^"\\])*")*$/g)) {
+                                    console.log(`Line #${lineIdx + 1} is invalid. It has unescaped quotes. We will skip this line.. Invalid Line: ${fileLineString}`)
+                                    fileLineString = ''
+                                }
                             }
 
                             return fileLineString
                         })
-                        .on('error', (err)=>{
-                            console.log(err)
+                        .on('error', e => {
+                            e = `Error while converting CSV to JSON.
+                            Line before convert: ${line}
+                            Error: ${e}`
+                            throw new BaseError(e)
                         })
                 )[0]
+
                 json = JSON.stringify(json).replace(/\\"/g, '')
-                log(`line after convert: ${json}`)
+                // log(`line after convert: ${json}`)
 
                 if (last) {
                     // Check for last Line
@@ -2086,6 +2119,9 @@ const CSV2JSON = async(dumb, editDumb, headers) => {
         throw new BaseError(`Error while converting CSV to JSON - Error: ${e}`)
     }
 }
+
+export { CSV2JSON }
+
 
 
 
