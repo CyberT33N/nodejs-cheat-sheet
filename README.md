@@ -2070,12 +2070,11 @@ const CSV2JSON = async(dumb, editDumb, headers, {
                 let json = (
                     await csv(options).fromString(headers + '\n\r' + line)
                         .preFileLine((fileLineString, lineIdx) => {
-                            // if it its not the first line
-                            if (counter !== 1) {
-                                if (counter !== 1 && !fileLineString.match(/^(?:[^"\\]|\\.|"(?:\\.|[^"\\])*")*$/g)) {
-                                    console.log(`Line #${lineIdx + 1} is invalid. It has unescaped quotes. We will skip this line.. Invalid Line: ${fileLineString}`)
-                                    fileLineString = ''
-                                }
+                            // eslint-disable-next-line max-len
+                            if (counter !== 1 && !fileLineString.match(/^(?:[^"\\]|\\.|"(?:\\.|[^"\\])*")*$/g)) {
+                                // eslint-disable-next-line max-len
+                                console.log(`Line #${lineIdx + 1} is invalid. It has unescaped quotes. We will skip this line.. Invalid Line: ${fileLineString}`)
+                                fileLineString = ''
                             }
 
                             return fileLineString
@@ -2092,19 +2091,22 @@ const CSV2JSON = async(dumb, editDumb, headers, {
 
                 if (json) {
                     json = JSON.stringify(json).replace(/\\"/g, '')
-                    
-                    if (last) {
-                        // Check for last Line
-                        json = `${json}]`
-                    } else if (counter === 1) {
-                        // Check for first line
-                        json = `[${json},\n\n`
-                    } else {
-                        // Check for between line
-                        json = `${json},\n\n`
-                    }
 
-                    await fs.appendFile(editDumb, json)
+                    // double verify if there is an unclosed quote
+                    if (json.match(/^(?:[^"\\]|\\.|"(?:\\.|[^"\\])*")*$/g)) {
+                        if (last) {
+                            // Check for last Line
+                            json = `${json}]`
+                        } else if (counter === 1) {
+                            // Check for first line
+                            json = `[${json},\n\n`
+                        } else {
+                            // Check for between line
+                            json = `${json},\n\n`
+                        }
+
+                        await fs.appendFile(editDumb, json)
+                    }
                 }
 
                 if (last) {
