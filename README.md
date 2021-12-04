@@ -391,12 +391,28 @@ node -e "require('../convert.js').CSV2JSON('$DUMB', '$editDumb', '$headers')"
 console.log( 'Current working directory: ' + __dirname );
 ```
 
+
+<br><br>
+<br><br>
+
+
+
 ## Exit script
 ```javascript
 process.exit();
 ```
 
+<br><br>
+<br><br>
 
+
+
+## Prevent script from closing on Error
+```javascript
+process.on('uncaughtException', function (err) {
+  console.log('Caught exception: ' + err);
+});
+```
 
 
 
