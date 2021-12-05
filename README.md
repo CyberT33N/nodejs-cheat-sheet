@@ -831,7 +831,7 @@ const fs = fsWithCallbacks.promises
 
 ```javascript
 //sync 
-if(fs.exists('./bookmarks.txt')) {
+if(await fs.exists('./bookmarks.txt')) {
  //..
 }
 ```
