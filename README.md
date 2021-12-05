@@ -818,9 +818,24 @@ npm cache clean --force
 
 ## fs promise with ESM
 ```javascript
+// method #1 - Use fs-extra
+
+// method #2
 import {default as fsWithCallbacks} from 'fs'
 const fs = fsWithCallbacks.promises
 ```
+
+<br><br>
+
+## check if file exists
+
+```javascript
+//sync 
+if(fs.exists('./bookmarks.txt')) {
+ //..
+}
+```
+
 <br><br>
 
 ## read file
