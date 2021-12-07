@@ -825,16 +825,30 @@ import {default as fsWithCallbacks} from 'fs'
 const fs = fsWithCallbacks.promises
 ```
 
+
+
 <br><br>
 
 ## check if file exists
-
 ```javascript
 //sync 
 if(await fs.exists('./bookmarks.txt')) {
  //..
 }
 ```
+
+
+
+<br><br>
+
+## read directory and get all file names
+
+```javascript
+//sync 
+const dirname = `${process.cwd()}/test/test-db-dumps`
+const files = await fs.readdir(dirname)
+```
+
 
 <br><br>
 
@@ -861,12 +875,17 @@ comstimageBuffer = await fs.readFile(path)
 const img = await fs.readFile(path, "binary")
 const imageUint8Array = Buffer.from(img)
 ```
+
+
 <br><br>
 
 ## Read vanilla javascript file
 ```javascript
 eval(require('fs').readFileSync('./website/js/req.js', 'utf8'));
 ```
+
+
+
 
 <br><br>
 
@@ -918,6 +937,9 @@ await new Promise((resolve, reject) => {
     })
 })
 ```
+
+
+
 
 <br><br>
 
