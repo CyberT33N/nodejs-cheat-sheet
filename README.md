@@ -112,6 +112,8 @@ node --input-type=module -e "import {CSV2JSON} from '../convert.js'; CSV2JSON('$
 
 # package.json
 
+<br><br>
+
 ## General Informations
 - https://docs.npmjs.com/creating-a-package-json-file
 
@@ -123,7 +125,37 @@ node --input-type=module -e "import {CSV2JSON} from '../convert.js'; CSV2JSON('$
 npm init --yes
 ```
 
+
 <br><br>
+
+## Set main file
+- Set a custom file which should be executed in the beginning when you run your app. If you do not define any file then first index.js will be choosed. If index.js does not exist then server.js will be choosed.
+```bash
+{ "main": "src/index.js" }
+```
+
+<br><br>
+
+#### execute async function inside of main file
+```bash
+const main = async () => {
+    //..
+}
+
+main().then(() => {
+    console.log('main() has been called')
+})
+```
+
+
+
+
+
+
+
+
+
+<br><br><br><br>
 
 ## Create custom license
 ```javascript
