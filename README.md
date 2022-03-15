@@ -137,6 +137,97 @@ node --input-type=module -e "import {CSV2JSON} from '../convert.js'; CSV2JSON('$
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+# Performance
+
+<br><br>
+
+## memoize-one (https://www.npmjs.com/package/memoize-one)
+```bash
+// memoize-one uses the default import
+import memoizeOne from 'memoize-one';
+
+function add(a, b) {
+  return a + b;
+}
+const memoizedAdd = memoizeOne(add);
+
+memoizedAdd(1, 2);
+// add function: is called
+// [new value returned: 3]
+
+memoizedAdd(1, 2);
+// add function: not called
+// [cached result is returned: 3]
+
+memoizedAdd(2, 3);
+// add function: is called
+// [new value returned: 5]
+
+memoizedAdd(2, 3);
+// add function: not called
+// [cached result is returned: 5]
+
+memoizedAdd(1, 2);
+// add function: is called
+// [new value returned: 3]
+// 👇
+// While the result of `add(1, 2)` was previously cached
+// `(1, 2)` was not the *latest* arguments (the last call was `(2, 3)`)
+// so the previous cached result of `(1, 3)` was lost
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br><br>
