@@ -48,6 +48,17 @@ HKEY_LOCAL_MACHINE -> SYSTEM -> ControlSet001 -> Services -> Null
 
 # CLI
 
+
+
+<br><br>
+
+
+## Start with more detailed logs
+```bash
+node app.js --trace-deprecation
+```
+
+
 <br><br>
 
 
