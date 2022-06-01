@@ -2139,6 +2139,83 @@ const buff = Buffer.from(readableFileStreamOrBuffer)
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+# DEBUG (https://www.npmjs.com/package/debug)
+
+## Exclude
+- Log everything except some specific stuff.
+```
+DEBUG=*,-nock.*,-express:*,-puppeteer:protocol
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
