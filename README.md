@@ -2209,6 +2209,48 @@ DEBUG=*,-nock.*,-express:*,-puppeteer:protocol
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+# Buffer
+
+<br><br>
+
+## Get size of string
+```javascript
+Buffer.from('Test..').length
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
