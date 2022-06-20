@@ -2104,6 +2104,17 @@ var check = Buffer.isBuffer(readableFileStreamOrBuffer)
 const buff = Buffer.from(readableFileStreamOrBuffer)
 ```
 
+<br><br>
+
+## Get size of string
+```javascript
+// Method #1
+Buffer.from('Test..').length
+
+// Method #2
+Buffer.byteLength(string, 'utf8')
+```
+
 
 
 
@@ -2208,21 +2219,6 @@ DEBUG=*,-nock.*,-express:*,-puppeteer:protocol
 
 
 
-
-<br><br>
- _____________________________________________________
- _____________________________________________________
-<br><br>
-
-
-# Buffer
-
-<br><br>
-
-## Get size of string
-```javascript
-Buffer.from('Test..').length
-```
 
 
 
