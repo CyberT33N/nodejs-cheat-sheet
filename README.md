@@ -1090,7 +1090,8 @@ await new Promise(resolve => {
 <br><br> <br><br>
 
 
-## write file
+## 
+
 ```javascript                                           
 await fs.writeFile('filename.txt', 'test');
 ```
@@ -1103,6 +1104,28 @@ await fs.writeFile('filename.txt', 'test');
 await fs.writeJson('filename.txt', jsonArray)
 ```
 
+
+
+<br><br>
+
+## write file, create directories if not exist and append to file
+```javascript                                           
+const os = require('os');
+const fs = require('fs-extra');
+
+const file = 'logfile.txt';
+const options = {flag: 'a'};
+
+async function writeToFile(text) {
+  await fs.outputFile(file, `${text}${os.EOL}`, options);
+}
+
+writeToFile('First line');
+writeToFile('Second line');
+writeToFile('Third line');
+writeToFile('Fourth line');
+writeToFile('Fifth line');
+```
 
 
 
