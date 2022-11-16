@@ -2465,3 +2465,57 @@ await new Promise((resolve, reject) => {
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+## Import JSON file with ESM
+```javascript
+// An import assertion in a static import
+import info from './package.json' assert { type: 'json' }
+
+// An import assertion in a dynamic import
+const { default: info } = await import("./package.json", { assert: { type: "json" }})
+
+console.log(info)
+```
+
