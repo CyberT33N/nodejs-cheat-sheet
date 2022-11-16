@@ -2511,11 +2511,11 @@ await new Promise((resolve, reject) => {
 ## Import JSON file with ESM
 ```javascript
 // An import assertion in a static import
-import info from './package.json' assert { type: 'json' }
+import jsonObj from './package.json' assert { type: 'json' }
 
 // An import assertion in a dynamic import
-const { default: info } = await import("./package.json", { assert: { type: "json" }})
+const { default: jsonObj } = await import("./package.json", { assert: { type: "json" }})
 
-console.log(info)
+console.log(jsonObj)
 ```
 
