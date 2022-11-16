@@ -2510,6 +2510,9 @@ await new Promise((resolve, reject) => {
 
 ## Import JSON file with ESM
 ```javascript
+// Use object desctructuring
+const { propertyName } = (await import("./package.json", { assert: { type: "json" }})).default
+
 // An import assertion in a static import
 import jsonObj from './package.json' assert { type: 'json' }
 
