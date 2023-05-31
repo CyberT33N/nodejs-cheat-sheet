@@ -607,6 +607,59 @@ async function lsExample() {
 
 ## Show realtime terminal logs
 ```javascript
+// Method #0
+const { spawn } = require('child_process');
+
+function executeCommand(command) {
+  return new Promise((resolve, reject) => {
+    const ls = spawn(command, { shell: true });
+
+    ls.stdout.on('data', (data) => {
+      console.log('stdout:', data.toString());
+    });
+
+    ls.stderr.on('data', (data) => {
+      console.error('stderr:', data.toString());
+    });
+
+    ls.on('error', (error) => {
+      reject(error);
+    });
+
+    ls.on('close', (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        const error = new Error(`Command failed with code ${code}`);
+        error.code = code;
+        reject(error);
+      }
+    });
+  });
+}
+
+async function startDevServer() {
+  try {
+    await executeCommand('cd ~/Projects/gitlab/servers/ccs && npm run start-dev');
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+startDevServer();
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ----- TERMINAL ----
 import util from 'util'
 import childProcess from 'child_process'
