@@ -608,11 +608,13 @@ async function lsExample() {
 ## Show realtime terminal logs
 ```javascript
 // Method #0
+let ls
 const { spawn } = require('child_process');
 
 function executeCommand(command) {
   return new Promise((resolve, reject) => {
-    const ls = spawn(command, { shell: true });
+    // you can use ls.kill to kill the terminal
+    ls = spawn(command, { shell: true });
 
     ls.stdout.on('data', (data) => {
       console.log('stdout:', data.toString());
