@@ -467,11 +467,29 @@ node -e "require('../convert.js').CSV2JSON('$DUMB', '$editDumb', '$headers')"
 console.log( 'Current working directory: ' + __dirname );
 ```
 
+
+<br><br>
+
+## Get current file path
+```javascript
+// Method #1
+module.filename
+
+// Method #2
+console.log( 'Current file path: ' + __filename );
+```
+
+<br><br>
 <br><br>
 
 
 ## Get path of root from project
 ```javascript
+// Method #1
+process.cwd()
+
+
+// Method #2
 var path = require('path');
 var appDir = path.dirname(require.main.filename);
 ```
