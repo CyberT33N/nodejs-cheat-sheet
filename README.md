@@ -483,6 +483,46 @@ console.log( 'Current file path: ' + __filename );
 <br><br>
 
 
+## Get relative file path
+```javascript
+ const relativePath = path.relative(process.cwd(), module.filename)
+```
+
+<br><br>
+<br><br>
+
+## Get relative file path for parent package.json
+```javascript
+/**
+* 
+* @param {*} filePath 
+* @returns 
+*/
+function findMainProjectDirectory(filePath) {
+  // Starte mit dem Verzeichnis der aktuellen Datei
+  let currentDir = path.dirname(filePath);
+
+  // Gehe so weit zurück, bis die package.json gefunden wird
+  while (!fs.existsSync(path.join(currentDir, 'package.json'))) {
+    currentDir = path.dirname(currentDir);
+
+    // Wenn wir das Wurzelverzeichnis erreichen, brechen wir ab
+    if (currentDir === path.dirname(currentDir)) {
+      throw new Error('Hauptprojektverzeichnis mit package.json nicht gefunden!');
+    }
+  }
+
+  return currentDir;
+}
+
+const mainProjectDir = findMainProjectDirectory(module.filename)
+const relativePath = path.relative(mainProjectDir, module.filename)
+```
+
+<br><br>
+<br><br>
+
+
 ## Get path of root from project
 ```javascript
 // Method #1
