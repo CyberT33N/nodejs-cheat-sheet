@@ -158,6 +158,79 @@ node --input-type=module -e "import {CSV2JSON} from '../convert.js'; CSV2JSON('$
 
 <br><br>
 
+## memoizee
+
+<br><br>
+
+- **DO NOT memoize a function and then use an object as param or caching will not work:
+```javascript
+const memoize = require('memoizee')
+const memProfile = require('memoizee/profile')
+
+function getCacheInfo() {
+    const { initial, cached } = memProfile.statistics[Object.keys(memProfile.statistics)[0]]
+    return { initial, cached }
+}
+
+function objectToString(obj) {
+    return JSON.stringify(obj)
+}
+
+const memoizedObjectToString = memoize(objectToString)
+
+memoizedObjectToString({ a: 1, b: 2 })
+memoizedObjectToString({ a: 1, b: 2 })
+memoizedObjectToString({ a: 1, b: 2 })
+memoizedObjectToString({ 'foo': 'bar' })
+memoizedObjectToString({ 'foo': 'bar' })
+memoizedObjectToString({ 'foo': 'bar' })
+
+const { initial, cached } = getCacheInfo()
+
+console.log(`memoizee is caching ${initial} different values. ${cached} out of ${initial+cached} results were returned from the cache.`)
+```
+
+
+If you still want to use objects as param then use the normalizer option
+```javascript
+const memoize = require('memoizee')
+const memProfile = require('memoizee/profile')
+
+function getCacheInfo() {
+    const { initial, cached } = memProfile.statistics[Object.keys(memProfile.statistics)[0]]
+    return { initial, cached }
+}
+
+function objectToString(obj, test) {
+     console.log('test: ', test)
+    return JSON.stringify(obj)
+}
+
+const memoizedObjectToString = memoize(objectToString, {
+    normalizer: args => JSON.stringify(args[0])
+})
+
+result = memoizedObjectToString({ a: 1, b: 2 }, 1)
+result = memoizedObjectToString({ a: 1, b: 2 }, 1)
+result = memoizedObjectToString({ a: 1, b: 2 }, 1)
+result = memoizedObjectToString({ 'foo': 'bar' }, 1)
+result = memoizedObjectToString({ 'foo': 'bar' }, 1)
+result = memoizedObjectToString({ 'foo': 'bar' }, 1)
+
+const { initial, cached } = getCacheInfo()
+
+console.log(`memoizee is caching ${initial} different values. ${cached} out of ${initial+cached} results were returned from the cache.`)
+```
+
+
+
+
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
 ## memoize-one (https://www.npmjs.com/package/memoize-one)
 ```bash
 // memoize-one uses the default import
