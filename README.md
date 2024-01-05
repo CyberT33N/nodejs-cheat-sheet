@@ -392,12 +392,28 @@ npm config set NODE_SKIP_PLATFORM_CHECK 1
 
 ## Profiling
 
+<br><br>
+
+## Clinic.js
+```shell
+npm i autocannon clinic -g
+```
+
+
+
+
+<br><br>
+<br><br>
+
 #### Bubbleprof
 - https://www.youtube.com/watch?v=tq3mqrV49l8
-- 
+
+<br><br>
+  
 ```javascript
-npm_lifecycle_event=start-dev clinic bubbleprof --on-port 'autocannon -c 5 -a 500 localhost:$PORT' -- node server.js
+npm_lifecycle_event=start-dev clinic bubbleprof --on-port 'autocannon -H "project-id: 7677" -c 5 -a 20 /api/Templates' -- node server.js
 ```
+- It automatically detect host and port
 
 
 
