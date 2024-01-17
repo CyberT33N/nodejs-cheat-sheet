@@ -1107,6 +1107,30 @@ npm cache clean --force
 
 # FS
 
+## check if path is folder
+```javascript
+const fs = require('fs-extra')
+
+async getDirectories(path) {
+     const dirContent = await fs.readdir(path)
+     const directories = []
+
+     for (const fileOrFolder of dirContent) {
+         const pathFull = `${path}/${fileOrFolder}`
+         const stat = await fs.lstat(pathFull)
+         const isDir = stat.isDirectory()
+         const isSymlink = stat.isSymbolicLink()
+
+         if ( isDir || isSymlink )
+             directories.push(fileOrFolder)
+     }
+
+     return directories
+ }
+```
+
+
+
 ## fs promise with ESM
 ```javascript
 // method #1 - Use fs-extra
