@@ -2728,6 +2728,9 @@ await new Promise((resolve, reject) => {
 ```shell
 npm install --save-dev eslint eslint-config-google
 npm init @eslint/config
+
+# lint all files
+# npx eslint .
 ```
 
 ```javascript
