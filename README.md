@@ -2725,6 +2725,11 @@ await new Promise((resolve, reject) => {
 <br><br>
 
 # eslint
+
+## next.js
+- Just install the project and eslint will be setup by default. Then use the the config file from below without extends
+
+## deprecated
 ```shell
 npm install --save-dev eslint eslint-config-google
 npm init @eslint/config
