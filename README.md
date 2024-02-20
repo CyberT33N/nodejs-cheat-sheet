@@ -2719,6 +2719,136 @@ await new Promise((resolve, reject) => {
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# eslint
+```shell
+npm install --save-dev eslint eslint-config-google
+npx eslint --init
+```
+
+```javascript
+{
+    "extends": "google",
+    "parser": "@babel/eslint-parser",
+    "plugins": [
+         // Stage 2
+         ["@babel/plugin-proposal-decorators", { "legacy": true }],
+         "@babel/plugin-proposal-function-sent",
+         "@babel/plugin-proposal-export-namespace-from",
+         "@babel/plugin-proposal-numeric-separator",
+         "@babel/plugin-proposal-throw-expressions",
+
+        // Stage 3
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-syntax-import-meta",
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        "@babel/plugin-proposal-json-strings"
+
+        // ["@babel/plugin-transform-flow-strip-types"]
+    ],
+    "env": {
+        "browser": false,
+        "node": true,
+        "es10": true,
+        "mocha": false
+    },
+    "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "module",
+        "requireConfigFile": false
+    },
+    "ecmaFeatures": {
+        "arrowFunctions": true,
+        "blockBindings": true,
+        "classes": true,
+        "defaultParams": true,
+        "modules": true,
+        "spread": true,
+        "globalReturn": true
+    },
+    "rules": {
+        "arrow-parens": ["error", "as-needed"],
+        "valid-jsdoc": ["error", {
+            "requireReturn": true,
+            "requireReturnType": true,
+            "requireParamDescription": true,
+            "requireReturnDescription": true,
+            "preferType": {
+                "String": "string",
+                "object": "Object"
+            }
+        }],
+        "require-jsdoc": ["error", {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": true,
+                "ClassDeclaration": true
+            }
+        }],
+        "no-var": 1,
+        "no-eval": "error",
+        "indent": ["error", 4],
+        "quotes": ["error", "single"],
+        "no-console": "off",
+        "space-before-function-paren": ["error", "never"],
+        "padded-blocks": ["error", "never"],
+        "prefer-arrow-callback": [0, { "allowNamedFunctions": true }],
+        "func-names": ["error", "never"],
+        "no-use-before-define": [
+            "error", {
+                "functions": true,
+                "classes": true
+            }
+        ],
+        "max-nested-callbacks": [
+            "error",
+            5
+        ],
+        "max-len": ["error", 120],
+        "object-curly-spacing": 0,
+        "comma-dangle": ["error", "never"],
+        "semi": [2, "never"],
+        "new-cap": 0,
+        "one-var": 0,
+        "guard-for-in": 0
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
