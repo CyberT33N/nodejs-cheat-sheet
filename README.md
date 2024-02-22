@@ -2214,6 +2214,40 @@ async function lookupPromise(){
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# Circular Object
+
+## Convert Circular Object to string
+```
+const axios = require('axios');
+
+axios.get('https://example.com/api/data')
+    .then(response => {
+        const jsonString = JSON.stringify(response.data, getCircularReplacer());
+        console.log(jsonString);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+// Funktion zum Ersetzen von zirkulären Referenzen
+function getCircularReplacer() {
+    const seen = new WeakSet();
+    return (key, value) => {
+        if (typeof value === 'object' && value !== null) {
+            if (seen.has(value)) {
+                return;
+            }
+            seen.add(value);
+        }
+        return value;
+    };
+}
+```
 
 
 
