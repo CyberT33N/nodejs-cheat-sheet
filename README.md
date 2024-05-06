@@ -2398,6 +2398,68 @@ Buffer.from('Test..').length
 Buffer.byteLength(string, 'utf8')
 ```
 
+<br><br>
+
+## Compare Buffer
+```javascript
+/**
+ * Creates a FormData object with the provided file and data.
+ *
+ * @param {Object} file - The file object containing the fieldname, originalname, and buffer.
+ * @param {Object} data - The additional data to be appended to the FormData object.
+ * @returns {FormData} The FormData object with the file and data appended.
+ */
+const _createFormData = (file, data = []) => {
+    if (!file) {
+        throw new ValidationError('_createFormData() - file')
+    }
+
+    const { fieldname, originalname, buffer } = file
+
+    const formData = new FormData()
+    formData.append(fieldname, buffer, originalname)
+
+    for (const key in data) {
+        formData.append(key, data[key])
+    }
+
+    return formData
+}
+
+
+describe('_createFormData()', () => {
+    let form, formData
+
+    const imageName = 'file'
+    const path = `${__dirname}/img.png`
+
+    before(async () => {
+        const imageBuffer = await fs.readFile(path)
+        
+        form = {
+            fieldname: imageName,
+            buffer: imageBuffer,
+            originalname: imageName
+        }
+
+        formData = new FormData()
+        formData.append(imageName, imageBuffer, imageName)
+        
+        for (const key in doc_DatasourceIdWithoutHandlebarsFormData.data) {
+            formData.append(key, doc_DatasourceIdWithoutHandlebarsFormData.data[key])
+        }
+    })
+
+    it.only('should generate form data', async () => {
+        const res = _createFormData(form, doc_DatasourceIdWithoutHandlebarsFormData.data)
+
+        const buffer1 = res.getBuffer().toString().replaceAll(res.getBoundary(), '')
+        const buffer2 = formData.getBuffer().toString().replaceAll(formData.getBoundary(), '')
+        expect(buffer1).to.be.equal(buffer2)
+    })
+})
+
+```
 
 
 
