@@ -2825,70 +2825,69 @@ await new Promise((resolve, reject) => {
 ## next.js
 - Just install the project and eslint will be setup by default. Then use the the config file from below without extends
 
-## deprecated
+
+
+## default
+- **Since eslint 9.0 there is no .eslintrc.json file anymore**
+  - https://eslint.org/docs/latest/use/configure/migration-guide
+  ```shell
+  npx @eslint/migrate-config .eslintrc.json
+  ```
+    
 ```shell
-npm install --save-dev eslint eslint-config-google
+npm install --save-dev eslint
 npm init @eslint/config
 
 # lint all files
 # npx eslint .
 ```
 
+- eslint.config.mjs
 ```javascript
-{
-    "extends": "google",
-    "parserOptions": {
-        "ecmaVersion": 2023,
-        "sourceType": "module",
-        "requireConfigFile": false
-    },
-    "rules": {
-        "arrow-parens": ["error", "as-needed"],
-        "valid-jsdoc": ["error", {
-            "requireReturn": true,
-            "requireReturnType": true,
-            "requireParamDescription": true,
-            "requireReturnDescription": true,
-            "preferType": {
-                "String": "string",
-                "object": "Object"
-            }
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import js from '@eslint/js'
+import { FlatCompat } from '@eslint/eslintrc'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const compat = new FlatCompat({
+    baseDirectory: __dirname,
+    recommendedConfig: js.configs.recommended,
+    allConfig: js.configs.all
+})
+
+export default [...compat.extends('eslint:recommended'), {
+    rules: {
+        'arrow-parens': ['error', 'as-needed'],
+        'no-var': 1,
+        'no-eval': 'error',
+        indent: ['error', 4],
+        quotes: ['error', 'single'],
+        'no-console': 'off',
+        'space-before-function-paren': ['error', 'never'],
+        'padded-blocks': ['error', 'never'],
+
+        'prefer-arrow-callback': [0, {
+            allowNamedFunctions: true
         }],
-        "require-jsdoc": ["error", {
-            "require": {
-                "FunctionDeclaration": true,
-                "MethodDefinition": true,
-                "ClassDeclaration": true
-            }
+
+        'func-names': ['error', 'never'],
+
+        'no-use-before-define': ['error', {
+            functions: true,
+            classes: true
         }],
-        "no-var": 1,
-        "no-eval": "error",
-        "indent": ["error", 4],
-        "quotes": ["error", "single"],
-        "no-console": "off",
-        "space-before-function-paren": ["error", "never"],
-        "padded-blocks": ["error", "never"],
-        "prefer-arrow-callback": [0, { "allowNamedFunctions": true }],
-        "func-names": ["error", "never"],
-        "no-use-before-define": [
-            "error", {
-                "functions": true,
-                "classes": true
-            }
-        ],
-        "max-nested-callbacks": [
-            "error",
-            5
-        ],
-        "max-len": ["error", 120],
-        "object-curly-spacing": 0,
-        "comma-dangle": ["error", "never"],
-        "semi": [2, "never"],
-        "new-cap": 0,
-        "one-var": 0,
-        "guard-for-in": 0
+
+        'max-len': ['error', 120],
+        'object-curly-spacing': 0,
+        'comma-dangle': ['error', 'never'],
+        semi: [2, 'never'],
+        'new-cap': 0,
+        'one-var': 0,
+        'guard-for-in': 0
     }
-}
+}]
 ```
 
 
