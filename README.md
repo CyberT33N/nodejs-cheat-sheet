@@ -2821,13 +2821,80 @@ await new Promise((resolve, reject) => {
 <br><br>
 
 # eslint
+- **Make sure to restart vs code after installing and configure everything. In most cases it will not detected without restart**
+
+<br><br>
+<br><br>
 
 ## next.js
 - Just install the project and eslint will be setup by default. Then use the the config file from below without extends
 
 
 
-## default
+<br><br>
+<br><br>
+
+## Typescript
+- https://typescript-eslint.io/getting-started
+```shell
+npm install --save-dev eslint @eslint/js @types/eslint__js typescript typescript-eslint
+```
+- eslint.config.mjs
+```javascript
+// @ts-check
+
+import eslint from '@eslint/js'
+import tseslint from 'typescript-eslint'
+
+export default tseslint.config(
+    {
+        ...eslint.configs.recommended,
+        rules: {
+            ...eslint.configs.recommended.rules,
+            // Hier fügst du deine neue Regel hinzu
+            'arrow-parens': ['error', 'as-needed'],
+            'no-var': 1,
+            'no-eval': 'error',
+            indent: ['error', 4],
+            quotes: ['error', 'single'],
+            'no-console': 'off',
+            'space-before-function-paren': ['error', 'never'],
+            'padded-blocks': ['error', 'never'],
+
+            'prefer-arrow-callback': [0, {
+                allowNamedFunctions: true
+            }],
+
+            'func-names': ['error', 'never'],
+
+            'no-use-before-define': ['error', {
+                functions: true,
+                classes: true
+            }],
+
+            'max-len': ['error', 120],
+            'object-curly-spacing': 0,
+            'comma-dangle': ['error', 'never'],
+            semi: [2, 'never'],
+            'new-cap': 0,
+            'one-var': 0,
+            'guard-for-in': 0
+        }
+    },
+    ...tseslint.configs.recommended
+)
+```
+
+
+
+
+
+
+<br><br>
+<br><br>
+
+
+## ESM
 - **Since eslint 9.0 there is no .eslintrc.json file anymore**
   - https://eslint.org/docs/latest/use/configure/migration-guide
   ```shell
