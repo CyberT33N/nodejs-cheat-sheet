@@ -36,6 +36,27 @@ HKEY_LOCAL_MACHINE -> SYSTEM -> ControlSet001 -> Services -> Null
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+
+# Shebang
+- Tells the operating system to use the node program to run the script.
+Now, you can run JavaScript code with ./fileName.js instead of node fileName.js.
+```javascript
+#!/usr/bin/env node 
+```
+
+
+
+
+
+
+
+
 
 
 
