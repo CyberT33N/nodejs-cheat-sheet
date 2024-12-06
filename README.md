@@ -1,4 +1,4 @@
-# Node.js Cheat Sheet
+e# Node.js Cheat Sheet
 Node.js Cheat Sheet with the most needed stuff..
 
 <br />
@@ -3037,3 +3037,62 @@ const { default: jsonObj } = await import("./package.json", { assert: { type: "j
 console.log(jsonObj)
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+# Util
+
+
+<br><br>
+
+## promisify()
+- https://www.geeksforgeeks.org/node-js-util-promisify-method/
+- `util.promisify()` in Node.js converts callback-based methods to promise-based, aiding in managing asynchronous code more cleanly. This alleviates callback nesting issues, enhancing code readability, and simplifying asynchronous operations through promise chaining.
+```javascript
+// Node.js program to illustrate 
+// util.promisify() methods 
+
+// Importing Utilities module 
+const util = require('util')
+
+// Importing File System module 
+const fs = require('fs')
+
+// Use promisify to convert callback 
+// based method fs.readdir to 
+// promise based method 
+const readdir =
+    util.promisify(fs.readdir)
+
+readdir('process.cwd()')
+    .then(files => {
+        console.log(files)
+    })
+    .catch(err => {
+        console.log(err)
+    }) 
+```
