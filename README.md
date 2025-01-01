@@ -884,6 +884,31 @@ it.only('should convert dumb and import it to database', done => {
 
 
 ## Run as sudo
+
+
+Option 1:
+- Will ask for password. You can use this aswell in electron.js
+```javascript
+const sudo = require('sudo-prompt');
+
+const sudoOptions = {
+    name: 'Secure File Vault'
+};
+
+// Promisified sudo exec
+function sudoExec(command) {
+    return new Promise((resolve, reject) => {
+        sudo.exec(command, sudoOptions, (error, stdout, stderr) => {
+            if (error) reject(error);
+            else resolve(stdout);
+        });
+    });
+}
+
+await sudoExec(`veracrypt --text --create "${containerPath}" --size "${containerSize}" --password "${password}" --encryption AES --hash sha512 --filesystem FAT --non-interactive`);
+```
+
+Option 2:
 ```javascript
 const child = spawn('sh', ['-c', `echo abc | sudo -S bash -c '${command}'`], {
     cwd: process.cwd(),
