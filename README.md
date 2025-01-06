@@ -1014,6 +1014,48 @@ const child = spawn('sh', ['-c', `echo abc | sudo -S bash -c '${command}'`], {
 
 
 
+<br><br>
+<br><br>
+
+
+## Wait for specific text in stdout
+```typescript
+**
+ * 🎬 Start Next.js
+ * @async
+ * @function startNextJs
+ * @description Starts the Next.js development server
+ * @returns {Promise<ChildProcess>} Next.js process instance
+ */
+const startNextJs = async(): Promise<ChildProcess> => {
+    console.log('Starting Next.js server...')
+
+    try {
+        await killPort(3000)
+        
+        return new Promise((resolve, reject) => {
+            const nextProcess: ChildProcess = exec('npm run dev', { cwd: process.cwd() })
+
+            nextProcess.stdout?.on('data', (data: string) => {
+                if (data.includes('Ready in')) {
+                    resolve(nextProcess)
+                }
+            })
+
+            nextProcess.stderr?.on('data', (err: string) => reject(new Error(err)))
+        })
+    } catch (error) {
+        console.error('Error starting Next.js server:', error)
+        throw error
+    }
+}
+```
+
+
+
+
+
+
 </details>
 
 
