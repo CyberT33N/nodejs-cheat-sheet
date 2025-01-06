@@ -61,6 +61,18 @@ Now, you can run JavaScript code with ./fileName.js instead of node fileName.js.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
  _____________________________________________________
  _____________________________________________________
@@ -69,7 +81,7 @@ Now, you can run JavaScript code with ./fileName.js instead of node fileName.js.
 
 # CLI
 
-
+<details><summary>Click to expand..</summary>
 
 <br><br>
 
@@ -98,7 +110,7 @@ node --input-type=module -e "import {CSV2JSON} from '../convert.js'; CSV2JSON('$
 ```
 
 
-
+</details>
 
 
 
@@ -176,6 +188,9 @@ node --input-type=module -e "import {CSV2JSON} from '../convert.js'; CSV2JSON('$
 
 
 # Performance
+
+
+<details><summary>Click to expand..</summary>
 
 <br><br>
 
@@ -287,6 +302,17 @@ memoizedAdd(1, 2);
 // so the previous cached result of `(1, 3)` was lost
 ```
 
+</details>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -342,6 +368,8 @@ memoizedAdd(1, 2);
 
 ## environment variable
 
+<details><summary>Click to expand..</summary>
+
 #### project
 ```javascript
 const dotenv = require('dotenv')
@@ -370,6 +398,22 @@ dotenv.config({silent: true}) // load global env vars from .env file
 ```bash
 npm config set NODE_SKIP_PLATFORM_CHECK 1
 ```
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -413,6 +457,8 @@ npm config set NODE_SKIP_PLATFORM_CHECK 1
 
 ## Profiling
 
+<details><summary>Click to expand..</summary>
+
 <br><br>
 
 ## Clinic.js
@@ -436,6 +482,8 @@ npm_lifecycle_event=start-dev clinic bubbleprof --on-port 'autocannon -H "projec
 ```
 - It automatically detect host and port
 
+</details>
+
 
 
 
@@ -483,7 +531,7 @@ npm_lifecycle_event=start-dev clinic bubbleprof --on-port 'autocannon -H "projec
 <br><br>
 
 
-#### start script with paramater
+## start script with paramater
 ```bash
 node app.js a=1
 ```
@@ -571,6 +619,8 @@ node -e "require('../convert.js').CSV2JSON('$DUMB', '$editDumb', '$headers')"
 
 
 # Directory
+
+<details><summary>Click to expand..</summary>
 
 ## Get current working directory
 ```javascript
@@ -675,6 +725,7 @@ process.on('uncaughtException', function (err) {
 
 
 
+</details>
 
 
 
@@ -717,6 +768,47 @@ process.on('uncaughtException', function (err) {
 
 
 
+
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+# process
+- https://nodejs.org/api/process.html
+
+
+<br><br>
+
+## process.stdout
+
+<br><br>
+
+### process.stdout.write
+- Write something directly to the terminal where you node.js app is running
+```typescript
+// Take screenshots at high framerate but play back at real-time speed
+const totalFrames = 150
+const progressBarWidth = 30
+
+for (let i = 0; i < totalFrames; i++) {
+    const percent = Math.floor((i / totalFrames) * 100)
+    const filled = Math.floor((i / totalFrames) * progressBarWidth)
+    const empty = progressBarWidth - filled
+    const progressBar = '█'.repeat(filled) + '▒'.repeat(empty)
+    process.stdout.write(`\r📸 Creating Screenshots: ${progressBar} ${percent}% (${i}/${totalFrames}) `)
+    
+    await page.screenshot({ path: join(tmpDir, `screenshot-${i}.png`) })
+    await new Promise<void>(resolve => setTimeout(resolve, 100)) // Real-time capture
+}
+
+console.log('\n✨ Screenshots captured! Converting to GIF...')
+```
 
 
 
