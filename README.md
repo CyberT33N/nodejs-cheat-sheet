@@ -826,6 +826,8 @@ console.log('\n✨ Screenshots captured! Converting to GIF...')
 
 
  # Exec
+
+<details><summary>Click to expand..</summary>
  
  <br><br>
 
@@ -1012,7 +1014,7 @@ const child = spawn('sh', ['-c', `echo abc | sudo -S bash -c '${command}'`], {
 
 
 
-
+</details>
 
 
 
@@ -1074,6 +1076,9 @@ const child = spawn('sh', ['-c', `echo abc | sudo -S bash -c '${command}'`], {
 
 # NPM
 https://docs.npmjs.com/cli/config
+
+
+<details><summary>Click to expand..</summary>
 
 <br><br>
 
@@ -1182,7 +1187,7 @@ npm cache clean --force
 
 
 
-
+</details>
 
 
 
@@ -1244,6 +1249,8 @@ npm cache clean --force
 <br><br>
 
 # FS
+
+<details><summary>Click to expand..</summary>
 
 ## check if path is folder
 ```javascript
@@ -1492,7 +1499,7 @@ writeToFile('Fifth line');
 ```
 
 
-
+</details>
 
 
 
@@ -1556,6 +1563,7 @@ writeToFile('Fifth line');
 ## .assert() (- https://www.w3schools.com/nodejs/met_assert.asp)
 - The assert() method tests if a given expression is true or not. If the expression evaluates to 0, or false, an assertion failure is being caused, and the program is terminated. The assert() method is an alias of the assert.ok() method.
 
+<details><summary>Click to expand..</summary>
 
 <br><br>
 
@@ -1576,214 +1584,7 @@ assert(50 - 50);
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
- _____________________________________________________
- _____________________________________________________
-<br><br>
-
-
-# request
-Since request is outdated you can also use:
-- https://www.npmjs.com/package/axios
-- https://nodejs.org/api/https.html
-
-
-## axios
-- https://github.com/CyberT33N/axios-cheat-sheet/edit/main/README.md
-
-
-<br><br>
-
-
-## POST with JSON
-```javascript
-const options = {
-  'method': 'POST',
-  'url': 'http://example.com/tree/item', // url or uri
-  'headers': {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({"name":"Fortnite","parent_id":15,"sorting":5})
-};
-
-// callback - request
-var request = require('request');
-request(options, function (error, response) {
-  if (error) throw new Error(error);
-  console.log(response.body);
-});
-
-// await - request-promise
-const request = require("request-promise");
-const r = await request(options);
-log( 'addItem() - response: ' + JSON.stringify(r, null, 4) );
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* callback - https node.js module */
-// stringify body for https module POST request
-const host = 'example.com'
-const path = 'foo.bar'
-const method = 'POST'
-const cookie = 'myCookie=123'
-const port = 443
-const body = {
-    name: "abc"
-}
-const headers = {
-    "Content-Type": "application/json",
-    "Set-Cookie": cookie,
-}
-            
-const data = JSON.stringify(body)
-const options = {
-    hostname: host,
-    port: port,
-    path: `/${path}`,
-    method: method,
-    headers: {
-        ...headers,
-        'Content-Length': data.length
-    },
-}
-
-const req = https.request(options, res => {
-    let resBody = ''
-    res.on('data', function (chunk) {
-        resBody += chunk
-    })
-
-    res.on('end', function () {
-        resBody = JSON.parse(resBody)
-        expect(res.statusCode).to.equal(201)
-        expect(res.headers.cookies).to.equal(cookie)
-        expect(resBody).to.deep.equal(body)
-        done()
-    })
-})
-
-req.on('error', e => {
-    console.error(e)
-    throw new Error(e);
-})
-
-req.write(data)
-req.end()
-```
-
-
-
-
-<br><br>
-
-
-## DELETE
-```javascript
-const options = {
-  'method': 'DELETE',
-  'url': 'http://example.com/tree/item?id=11'  // url or uri
-};
-```
-
-
-
-<br><br>
-
-
-
-## Check Proxy
-```javascript
-const options = {
-      proxy: "http://" + proxy, // http or https
-      url: "http://www.google.com",  // url or uri
-      timeout: 10000
- };
-```
-## Public Proxies
-- https://proxyscrape.com/free-proxy-list
-- https://openproxy.space/list
-
-
-
-
-
-
+</details>
 
 
 
@@ -1915,7 +1716,7 @@ console.log( '#1 -will come first..' );
 
 # events (https://nodejs.org/api/events.html)
 
-
+<details><summary>Click to expand..</summary>
 
 
 
@@ -2092,7 +1893,7 @@ it('should create new browser object after close', async () => {
 
 
 
-
+</details>
 
 
 
@@ -2143,6 +1944,8 @@ it('should create new browser object after close', async () => {
 # Remote Debugging (https://nodejs.org/en/docs/guides/debugging-getting-started/)
 - Allows you to debug your node.js code via Remote on your Browser
 
+<details><summary>Click to expand..</summary>
+
 <br><br>
 
 1. Execute the js file you want to debug with this command:
@@ -2160,6 +1963,7 @@ node --inspect-brk test/config/test.js
 3. Click on **Inspect**. Thats it! Now you can debug your Node Code within your Browser Inspector Console.
 
 
+</details>
 
 
 
@@ -2212,48 +2016,6 @@ node --inspect-brk test/config/test.js
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<br><br>
- _____________________________________________________
- _____________________________________________________
-<br><br>
-
-# require
-
-<br><br>
-
-## folder (http://nodejs.org/api/modules.html#modules_folders_as_modules)
-- When you pass a folder to Node's require(), it will check for a package.json for an endpoint. If that isn't defined, it checks for index.js, and finally index.node (a c++ extension format). So the index.js is most likely the entry point for requiring a module.
-```javascript
-// index.js
-exports.something = require("./routes/something.js");
-exports.others = require("./routes/others.js");
-```
-
-
-
-
-<br><br>
-
-## use global
-```javascript
-// app.js
-require('./test')
-console.log(test) // true
-
-// test.js
-global.test = true
-```
 
 
 
@@ -2303,6 +2065,8 @@ global.test = true
 
 # DNS
 
+<details><summary>Click to expand..</summary>
+
 <br><br>
 
 ## lookup
@@ -2318,7 +2082,7 @@ async function lookupPromise(){
 }
 ```
 
-
+</details>
 
 
 
@@ -2359,6 +2123,8 @@ async function lookupPromise(){
 
 # Circular Object
 
+<details><summary>Click to expand..</summary>
+
 ## Convert Circular Object to string
 ```
 const axios = require('axios');
@@ -2389,7 +2155,7 @@ function getCircularReplacer() {
 
 
 
-
+</details>
 
 
 
@@ -2437,6 +2203,8 @@ function getCircularReplacer() {
 
 # stream
 
+<details><summary>Click to expand..</summary>
+
 <br><br>
 
 ## create stream
@@ -2446,7 +2214,7 @@ const writeStream = fs.createWriteStream("outpuData.json")
 const stream = readStream.pipe(writeStream)
 ```
 
-
+</details>
 
 
 
@@ -2503,6 +2271,8 @@ const stream = readStream.pipe(writeStream)
 <br><br>
 
 # buffer
+
+<details><summary>Click to expand..</summary>
 
 <br><br>
 
@@ -2600,6 +2370,96 @@ describe('_createFormData()', () => {
 ```
 
 
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2638,116 +2498,69 @@ describe('_createFormData()', () => {
  _____________________________________________________
 <br><br>
 
+# Scripts
 
-# DEBUG (https://www.npmjs.com/package/debug)
 
-## Exclude
-- Log everything except some specific stuff.
+
+## Kill port
+```typescript
+/**
+ * 🚫 Kill process on port 3000
+ * @async
+ * @function killPort
+ * @description Kills any process running on port 3000
+ * @param {number} port - Port number to kill process on
+ * @returns {Promise<void>}
+ */
+const killPort = async(port: number): Promise<void> => {
+    return new Promise((resolve, reject) => {
+        const checkCommand: string = process.platform === 'win32'
+            ? `netstat -ano | findstr :${port}`
+            : `fuser ${port}/tcp 2>/dev/null`
+
+        exec(checkCommand, (error: ExecException | null, stdout: string, stderr: string) => {
+            if (error) {
+                console.log(`No process running on port ${port}`)
+                resolve()
+                return
+            }
+
+            const pid: string | undefined = process.platform === 'win32'
+                ? stdout.trim().split(/\s+/).pop()
+                : stdout.trim().split(/\s+/)[0]
+
+            if (!pid) {
+                console.log(`No process running on port ${port}`)
+                resolve()
+                return
+            }
+
+            console.log(`Found process ${pid} on port ${port}`)
+            const killCommand: string = process.platform === 'win32'
+                ? `taskkill /F /PID ${pid}`
+                : `kill -9 ${pid}`
+
+            exec(killCommand, (error: ExecException | null) => {
+                if (error) {
+                    console.error(`Error killing process on port ${port}:`, error)
+                    reject(error)
+                    return
+                }
+                console.log(`Killed process on port ${port}`)
+                resolve()
+            })
+        })
+    })
+}
+
 ```
-DEBUG=*,-nock.*,-express:*,-puppeteer:protocol
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 <br><br>
- _____________________________________________________
- _____________________________________________________
 <br><br>
 
-
-#### Convert csv to json (works with large files)
+## Convert csv to json (works with large files)
 ```javascript
 /*
 ███████████████████████████████████████████████████████████████████████████████
