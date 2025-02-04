@@ -61,6 +61,33 @@ Now, you can run JavaScript code with ./fileName.js instead of node fileName.js.
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# Validation
+
+## Schema
+- https://www.npmjs.com/package/zod
+  - TypeScript-first schema validation with static type inference 
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+
+# Benchmark
+- https://www.npmjs.com/package/mitata
+
+
+
+
 
 
 
