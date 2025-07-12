@@ -3199,6 +3199,11 @@ readdir('process.cwd()')
 
 # Utils
 
+## CLI
+
+### progress
+- https://www.npmjs.com/package/cli-progress
+
 ## Logging
 
 ### Design
