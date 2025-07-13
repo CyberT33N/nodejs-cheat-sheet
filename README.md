@@ -3203,13 +3203,28 @@ readdir('process.cwd()')
 - https://www.npmjs.com/package/@opentelemetry/api
 
 
+<br><br>
 
 ## CLI
+
+### Interfaces
+- https://www.npmjs.com/package/listr2
 
 ### progress
 - https://www.npmjs.com/package/cli-progress
 
+### spinners
+- https://www.npmjs.com/package/ora
 
+
+### Design
+- [ink](https://www.npmjs.com/package/ink)
+
+
+
+
+
+<br><br>
 
 
 ## Logging
