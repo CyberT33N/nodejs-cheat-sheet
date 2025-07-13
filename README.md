@@ -3207,6 +3207,15 @@ readdir('process.cwd()')
 
 ## CLI
 
+### Dashboards
+- https://www.npmjs.com/package/blessed-contrib
+
+### Charts
+- https://www.npmjs.com/package/asciichart
+
+### ASCII
+- figlet
+
 ### Interfaces
 - https://www.npmjs.com/package/listr2
 
@@ -3217,7 +3226,7 @@ readdir('process.cwd()')
 - https://www.npmjs.com/package/ora
 
 
-### Design
+### Frameworks
 - [ink](https://www.npmjs.com/package/ink)
 
 
