@@ -2639,6 +2639,9 @@ describe('_createFormData()', () => {
 
 # Scripts
 
+## Read gb files
+- https://github.com/tkim90/1brc/blob/main/main.ts
+
 
 
 ## Kill port
