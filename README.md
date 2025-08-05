@@ -3200,7 +3200,14 @@ readdir('process.cwd()')
 <br><br>
 
 
-# Utils
+# NPM Packages
+
+
+## Utils
+- lodash
+- [es-toolkit](https://github.com/toss/es-toolkit?utm_source=tldrwebdev)
+
+<br><br>
 
 ## Trace
 - https://www.npmjs.com/package/@opentelemetry/api
