@@ -556,6 +556,189 @@ npm config set NODE_SKIP_PLATFORM_CHECK 1
 
 <details><summary>Click to expand..</summary>
 
+
+## Guides:
+
+
+
+
+<details><summary>Click to expand..</summary>
+
+## 1. Use the Built-in Node.js Profiler
+- Node.js hat einen eingebauten Profiler (V8 Sampling CPU Profiler).
+- **Starten**:  
+  ```bash
+  node --prof app.js
+  node --prof-process v8.log > processed.txt
+````
+
+* **Ergebnis**: zeigt CPU-intensive Funktionen → potenzielle Slowdowns.
+* **Best for**: Slow functions & CPU bottlenecks.
+
+---
+
+## 2. Measure Event Loop Delays with `clinic doctor`
+
+* Event Loop ist kritisch; Blockaden bremsen alles.
+* **Installieren**:
+
+  ```bash
+  npm install -g clinic
+  clinic doctor -- node app.js
+  ```
+* Erstellt visuelles Report → zeigt Event Loop Blocking & CPU Overuse.
+* **Best for**: Diagnosing event loop issues.
+
+---
+
+## 3. Track Memory Usage to Prevent Leaks
+
+* Memory Leaks verschlechtern Performance.
+
+### Variante 1: `process.memoryUsage()`
+
+```js
+setInterval(() => {
+  const memoryUsage = process.memoryUsage();
+  console.log(`Heap Used: ${memoryUsage.heapUsed / 1024 / 1024} MB`);
+}, 5000);
+```
+
+### Variante 2: Chrome DevTools
+
+```bash
+node --inspect app.js
+```
+
+* `chrome://inspect` öffnen → Heap Snapshots aufnehmen.
+* **Best for**: Memory leaks & high memory consumption.
+
+---
+
+## 4. Profile CPU Usage with 0x
+
+* **Installieren**:
+
+  ```bash
+  npm install -g 0x
+  0x app.js
+  ```
+* Erstellt **Flamegraph** → zeigt CPU-Usage visuell.
+* **Best for**: CPU-intensive Funktionen.
+
+---
+
+## 5. Analyze Async Bottlenecks with `async_hooks`
+
+* Async Ops können Verzögerungen verursachen.
+
+```js
+const asyncHooks = require('async_hooks');
+
+const hook = asyncHooks.createHook({
+  init(asyncId, type, triggerAsyncId) {
+    console.log(`Async operation started: ${type} (ID: ${asyncId})`);
+  }
+});
+hook.enable();
+```
+
+* Hilft, langsame Promises, DB-Queries oder I/O zu debuggen.
+* **Best for**: Debugging async operations.
+
+---
+
+## 6. Optimize Database Queries
+
+DB-Queries sind oft Performance-Killer.
+
+* **Indexing** → schnellere Lookups.
+
+* **Batch Queries** → weniger Queries.
+
+* **Cache Results** → Redis / In-Memory.
+
+* **Profiling**:
+
+  * MongoDB:
+
+    ```js
+    db.collection.find({}).explain("executionStats")
+    ```
+  * SQL: Query Logging aktivieren.
+
+* **Best for**: Faster DB responses.
+
+---
+
+## 7. Monitor Production Performance with APM Tools
+
+Performance-Monitoring auch **in Produktion**.
+
+### Tools
+
+* New Relic → slow transactions, bottlenecks
+* Datadog → logs, metrics, traces
+* AppSignal → error tracking + performance insights
+* Prometheus + Grafana → custom dashboards
+
+### Beispiel: Prometheus + Node.js
+
+```js
+const client = require('prom-client');
+const express = require('express');
+const app = express();
+
+const histogram = new client.Histogram({
+  name: 'http_request_duration_seconds',
+  help: 'Duration of HTTP requests in seconds',
+  labelNames: ['method', 'route', 'status_code']
+});
+
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const duration = (Date.now() - start) / 1000;
+    histogram.labels(req.method, req.path, res.statusCode).observe(duration);
+  });
+  next();
+});
+
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', client.register.contentType);
+  res.end(await client.register.metrics());
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+```
+
+→ Prometheus sammelt Daten, Grafana visualisiert.
+
+* **Best for**: Real-world monitoring.
+
+---
+
+## 🔁 Quick Recap
+
+1. Built-in Profiler → CPU usage.
+2. Clinic doctor → Event Loop Monitoring.
+3. Memory Usage → Leaks erkennen.
+4. 0x Flamegraphs → CPU Profiling.
+5. async\_hooks → Async Delays debuggen.
+6. DB-Queries optimieren.
+7. APM Tools für Production Monitoring.
+
+
+
+</details>
+
+
+
+
+
+
+
+
 <br><br>
 
 ## Clinic.js
