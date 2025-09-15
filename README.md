@@ -289,6 +289,29 @@ node --input-type=module -e "import {CSV2JSON} from '../convert.js'; CSV2JSON('$
 
 <details><summary>Click to expand..</summary>
 
+# Advanced Application Performance Monitoring (APM)
+Advanced Application Performance Monitoring (APM) tools give you:
+
+    Route-level performance
+    DB query times
+    External service latency
+    Error frequency
+    Memory usage trends
+
+Some popular APM tools for Node.js include:
+
+    New Relic
+    AppDynamics
+    Datadog
+    Prometheus + Grafana
+    Elastic APM
+
+
+
+
+
+
+<br><br>
 <br><br>
 
 ## memoizee
